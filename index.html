@@ -1,0 +1,991 @@
+<title>Patent Lexicon</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+JP:wght@400;600;700&family=Noto+Serif+KR:wght@400;600;700&display=swap">
+<style>
+/* Layout: a spot-lit gallery shelf of nine cloth-bound volumes, a museum plaque under it, then notes.
+   Study view: the chosen volume lies open on the left (index page), the card deck stands on the right. */
+:root{
+  --bg:#DFE0DB; --bg-2:#D1D2CC; --fg:#16181B; --muted:#5A5E64; --line:rgba(22,24,27,.14);
+  --accent:#86651F; --spot:rgba(255,255,255,.95); --shadow:rgba(16,18,22,.4);
+  --paper:#F7F5EF; --paper-2:#EAE6DA; --ink:#1B1C20; --ink-2:#67676C; --rule:rgba(27,28,32,.13); --pacc:#86651F; --stamp:#A6402C;
+  --f-disp:"Bodoni Moda","Bodoni 72",Didot,"Times New Roman",serif;
+  --f-ko:"Noto Serif KR","AppleMyungjo","Nanum Myeongjo",serif;
+  --f-ja:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-sans:"IBM Plex Sans KR","IBM Plex Sans JP","Apple SD Gothic Neo","Hiragino Sans",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --gold:linear-gradient(100deg,#7d5f26 0%,#e8cf8c 24%,#a9843d 42%,#f3dea2 58%,#93712f 78%,#d2b46d 100%);
+  --silver:linear-gradient(100deg,#7f838a 0%,#eef0f3 26%,#9a9ea5 44%,#ffffff 58%,#8b8f96 78%,#cfd2d7 100%);
+  --inkfoil:linear-gradient(100deg,#16130e 0%,#3d372b 50%,#16130e 100%);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C0D10; --bg-2:#070809; --fg:#EAE6DC; --muted:#8F9299; --line:rgba(234,230,220,.12);
+  --accent:#CFAE66; --spot:rgba(255,238,205,.10); --shadow:rgba(0,0,0,.8); --paper:#EEEAE0; --paper-2:#DED8C9; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C0D10; --bg-2:#070809; --fg:#EAE6DC; --muted:#8F9299; --line:rgba(234,230,220,.12);
+  --accent:#CFAE66; --spot:rgba(255,238,205,.10); --shadow:rgba(0,0,0,.8); --paper:#EEEAE0; --paper-2:#DED8C9; color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+body{background:radial-gradient(1400px 700px at 50% -160px,var(--spot),transparent 70%) no-repeat,var(--bg);color:var(--fg);
+  font-family:var(--f-sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body.locked{overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+kbd{font:500 10.5px/1 var(--f-mono);padding:3px 6px;border-radius:4px;border:1px solid currentColor;opacity:.55}
+.wrap{max-width:1240px;margin:0 auto}
+.foil{background-image:var(--foil);background-size:200% 100%;background-position:0 0;-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,.35));transition:background-position 1.6s var(--ease)}
+
+/* ── header & intro ───────────────────────────── */
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px 20px;flex-wrap:wrap;padding-block:20px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-seal{width:32px;height:32px;flex:none;border:1px solid var(--accent);border-radius:50%;display:grid;place-items:center;font:italic 500 18px/1 var(--f-disp);color:var(--accent)}
+.brand-name{font-family:var(--f-disp);font-size:19px;letter-spacing:.01em}
+.brand-ko{font-size:12.5px;color:var(--muted);padding-left:12px;border-left:1px solid var(--line)}
+.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg-label{font-size:12px;color:var(--muted);padding:0 6px 0 10px}
+.seg button{font:500 11.5px/1 var(--f-mono);letter-spacing:.1em;padding:8px 11px;border-radius:999px;color:var(--muted);transition:background .25s,color .25s}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+
+.intro{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px 64px;align-items:end;padding-block:64px 8px}
+.eyebrow{font:500 11px/1.5 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 20px}
+h1 em{font-style:italic;font-weight:400}
+h1{font-family:var(--f-disp);font-weight:500;font-size:clamp(42px,6.2vw,84px);line-height:1.04;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.triplet{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:26px 0 0;font-size:clamp(18px,2vw,25px);line-height:1.35;min-height:2.8em}
+.triplet span{transition:opacity .42s var(--ease),transform .42s var(--ease)}
+.triplet .ko{font-family:var(--f-ko);font-weight:600}
+.triplet .en{font-family:var(--f-disp);font-style:italic}
+.triplet .ja{font-family:var(--f-ja);font-weight:600}
+.triplet .sl{font-family:var(--f-disp);color:var(--accent)}
+.triplet .ko{transition-delay:.06s}
+.triplet .ja{transition-delay:.12s}
+.triplet.swap span{opacity:0;transform:translateY(-7px)}
+.lede{color:var(--muted);max-width:42ch;margin:0 0 22px;text-wrap:pretty}
+.lede b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums}
+.intro-acts{display:flex;align-items:center;gap:14px 22px;flex-wrap:wrap}
+.stat{font-size:13px;color:var(--muted)} .stat b{color:var(--fg);font:500 15px var(--f-mono)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--line);font-size:14px;font-weight:500;transition:border-color .2s,background .2s,transform .15s}
+.btn:hover{border-color:var(--muted)} .btn:active{transform:scale(.97)}
+.btn-solid{background:var(--fg);color:var(--bg);border-color:var(--fg)} .btn-solid:hover{border-color:var(--fg);opacity:.92}
+
+/* ── shelf ─────────────────────────────────────── */
+.shelf-stage{position:relative}
+.shelf-stage::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 46% 62% at 50% 62%,var(--spot),transparent 72%);pointer-events:none}
+.shelf-scroll{position:relative;scrollbar-width:none}
+.shelf-scroll::-webkit-scrollbar{display:none}
+.shelf{--bw:clamp(136px,13.5vw,190px);--bh:calc(var(--bw)*1.45);--bd:calc(var(--bw)*.27);--slot:calc(var(--bw)*.62);--mid:4;--mx:0;--my:0;
+  position:relative;display:flex;justify-content:center;align-items:flex-end;width:max-content;min-width:100%;padding-block:64px 44px;margin:0 auto}
+.shelf::after{content:"";position:absolute;left:0;right:0;bottom:44px;height:1px;background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
+.slot{position:relative;z-index:1;flex:none;width:var(--slot);height:calc(var(--bh) + 26px);display:flex;align-items:flex-end;justify-content:center;
+  perspective:1700px;perspective-origin:calc(50% - (var(--i) - var(--mid)) * var(--slot) * .55 + var(--mx) * 160px) calc(18% + var(--my) * 60px);
+  transition:width .7s var(--ease),perspective-origin 1s var(--ease)}
+.slot::after{content:"";position:absolute;z-index:-1;left:50%;bottom:-8px;width:calc(var(--bw)*.8);height:20px;transform:translateX(-50%);
+  background:radial-gradient(closest-side,var(--shadow),transparent);filter:blur(5px);opacity:.8;transition:opacity .6s,width .6s}
+.slot:focus-visible{outline:none}
+.book{--u:calc(var(--bw)/100);--ry:79deg;--lift:0px;position:relative;width:var(--bw);height:var(--bh);transform-style:preserve-3d;
+  transform:translateY(var(--lift)) rotateX(calc(var(--my) * -3deg)) rotateY(calc(var(--ry) + var(--mx) * -9deg));
+  transition:transform .85s var(--ease);animation:rise 1.2s var(--ease) backwards;animation-delay:calc(var(--i) * 75ms + 150ms)}
+@keyframes rise{from{transform:translateY(80px) rotateY(100deg)}}
+@media (hover:hover){
+  .slot:hover{width:calc(var(--bw)*1.1);z-index:5}
+  .slot:hover .book{--ry:14deg;--lift:-18px}
+  .slot:hover::after{opacity:.45;width:var(--bw)}
+  .slot:hover .cover::after{background-position:0 0}
+  .slot:hover .foil{background-position:100% 0}
+}
+.slot:focus-visible{width:calc(var(--bw)*1.1);z-index:5}
+.slot:focus-visible .book{--ry:14deg;--lift:-18px}
+.slot:focus-visible .cover{outline:2px solid var(--accent);outline-offset:4px}
+
+.face{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cloth{background-color:var(--c);background-image:var(--grain),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(0,0,0,.07) 0 1px,transparent 1px 3px)}
+.cover,.back{inset:0;border-radius:2px 5px 5px 2px}
+.cover{transform:translateZ(calc(var(--bd)/2));box-shadow:inset 3px 0 0 rgba(0,0,0,.22),inset 8px 0 0 rgba(255,255,255,.04),inset 0 0 40px rgba(0,0,0,.28)}
+.cover::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.17) 48%,transparent 62%);background-size:300% 100%;background-position:100% 0;transition:background-position 1.4s var(--ease)}
+.back{transform:rotateY(180deg) translateZ(calc(var(--bd)/2))}
+.spine{top:0;height:100%;width:var(--bd);left:calc(50% - var(--bd)/2);transform:rotateY(-90deg) translateZ(calc(var(--bw)/2));border-radius:3px;
+  background-image:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.1) 32%,rgba(255,255,255,.02) 62%,rgba(0,0,0,.42)),var(--grain),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.edge{top:4px;height:calc(100% - 8px);width:calc(var(--bd) - 6px);left:calc(50% - var(--bd)/2 + 3px);transform:rotateY(90deg) translateZ(calc(var(--bw)/2 - 5px));
+  background:linear-gradient(90deg,rgba(0,0,0,.12),transparent 30%,transparent 70%,rgba(0,0,0,.12)),repeating-linear-gradient(90deg,#efe9da 0 1px,#d6ceb9 1px 2px)}
+.topf{left:1px;width:calc(100% - 6px);height:calc(var(--bd) - 6px);top:calc(50% - var(--bd)/2 + 3px);transform:rotateX(90deg) translateZ(calc(var(--bh)/2 - 4px));
+  background:repeating-linear-gradient(0deg,#efe9da 0 1px,#d6ceb9 1px 2px)}
+
+/* cover typography, sized in --u (1% of the board width) so one design serves shelf and open book */
+.cv{position:absolute;inset:calc(var(--u)*7);border:1px solid var(--fs);display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  padding:calc(var(--u)*9) calc(var(--u)*4);text-align:center;line-height:1}
+.cv::before{content:"";position:absolute;inset:calc(var(--u)*1.8);border:1px solid var(--fs);opacity:.5;pointer-events:none}
+.cv-no{font-family:var(--f-disp);font-weight:500;font-size:calc(var(--u)*9);letter-spacing:.2em}
+.cv-mid{display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*7)}
+.cv-seal{width:calc(var(--u)*30);height:calc(var(--u)*30);border-radius:50%;border:1px solid var(--fs);display:grid;place-items:center}
+.cv-seal span{font-family:var(--f-disp);font-style:italic;font-weight:500;font-size:calc(var(--u)*17)}
+.cv-title{font-family:var(--f-disp);font-weight:500;font-size:calc(var(--u)*10.5);letter-spacing:.01em;white-space:nowrap}
+.cv-sub{font-family:var(--f-mono);font-size:calc(var(--u)*4.2);letter-spacing:.24em;color:var(--fs);opacity:.9;white-space:nowrap}
+.cv-foot{font-family:var(--f-mono);font-size:calc(var(--u)*4.2);letter-spacing:.32em;color:var(--fs);opacity:.85}
+.sp{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding-block:calc(var(--u)*6);gap:calc(var(--u)*4);line-height:1}
+.sp-band{width:100%;height:calc(var(--u)*3);flex:none;border-block:1px solid var(--fs);opacity:.8}
+.sp-no{font-family:var(--f-disp);font-weight:500;font-size:calc(var(--u)*7.5);margin-top:calc(var(--u)*2)}
+.sp-title{writing-mode:vertical-rl;font-family:var(--f-disp);font-weight:500;font-size:calc(var(--u)*9);letter-spacing:.06em;margin-top:calc(var(--u)*6);white-space:nowrap}
+.sp-fill{flex:1}
+.sp-count{font-family:var(--f-mono);font-size:calc(var(--u)*5);font-variant-numeric:tabular-nums}
+
+/* Vol. X: a red notebook with a paper label and an elastic band */
+.slot.nb{margin-left:calc(var(--bw)*.22)}
+.nb-label{position:absolute;left:13%;right:17%;top:20%;display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*2.6);
+  padding:calc(var(--u)*6) calc(var(--u)*4) calc(var(--u)*4);text-align:center;line-height:1;color:var(--ink);background:var(--grain),var(--paper);border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.nb-label::before{content:"";position:absolute;inset:calc(var(--u)*1.6);border:1px solid var(--rule);pointer-events:none}
+.nb-no{font:400 calc(var(--u)*17)/1 var(--f-disp);color:var(--stamp)}
+.nb-title{font:500 calc(var(--u)*10)/1 var(--f-disp)}
+.nb-sub{font:500 calc(var(--u)*2.9)/1 var(--f-mono);letter-spacing:.2em;color:var(--ink-2);white-space:nowrap}
+.nb-lines{align-self:stretch;height:calc(var(--u)*13);margin-top:calc(var(--u)*1.5);background:repeating-linear-gradient(180deg,transparent 0 calc(var(--u)*4.1),var(--rule) calc(var(--u)*4.1) calc(var(--u)*4.4))}
+.nb-band{position:absolute;top:0;bottom:0;right:8%;width:calc(var(--u)*3.6);background:linear-gradient(90deg,#111,#3a3a3a 45%,#111);box-shadow:0 0 5px rgba(0,0,0,.45)}
+
+/* ── plaque ───────────────────────────────────── */
+.plaque{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px 44px;align-items:center;padding-block:28px;border-block:1px solid var(--line)}
+.pl-no{font-family:var(--f-disp);font-size:52px;line-height:1;color:var(--accent);min-width:2.3em}
+.pl-no small{display:block;font:500 10.5px var(--f-mono);letter-spacing:.2em;color:var(--muted);margin-bottom:8px;text-transform:uppercase}
+.pl-titles{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 16px;margin:0;font-weight:400}
+.pl-en{font:500 34px/1.15 var(--f-disp)} .pl-ko{font:600 19px/1.25 var(--f-ko);color:var(--muted)} .pl-ja{font:600 19px/1.25 var(--f-ja);color:var(--muted)}
+.pl-desc{margin:8px 0 0;color:var(--muted);max-width:62ch;text-wrap:pretty}
+.pl-sample{margin:6px 0 0;font-size:13px;color:var(--fg);opacity:.75}
+.pl-side{display:grid;gap:12px;justify-items:end}
+.pl-stat{font:500 12px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.meter{display:block;width:190px;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);transition:width .6s var(--ease)}
+
+/* ── notes ─────────────────────────────────────── */
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 56px;padding-block:56px}
+.notes h3{font:500 11px/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+.notes ol{margin:0;padding-left:1.3em;display:grid;gap:10px}
+.notes ol li::marker{font-family:var(--f-disp);color:var(--accent)}
+.notes p{margin:0 0 12px;color:var(--muted);max-width:52ch;text-wrap:pretty}
+.keys{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;margin:0;align-items:center}
+.keys dt{min-width:3.4em} .keys dd{margin:0;color:var(--muted)}
+.link{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--muted)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;padding-block:20px 44px;border-top:1px solid var(--line);font:400 11.5px var(--f-mono);letter-spacing:.04em;color:var(--muted)}
+
+/* ── study view ───────────────────────────────── */
+.study{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;
+  background:radial-gradient(1000px 640px at 28% -80px,var(--spot),transparent 70%) no-repeat,var(--bg);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.st-bar{display:flex;align-items:center;flex-wrap:wrap;gap:12px 22px;width:100%;max-width:1240px;margin:0 auto;padding-block:14px;border-bottom:1px solid var(--line)}
+.st-title{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;margin:0;font-weight:400}
+.st-no{font:500 20px/1.2 var(--f-disp);color:var(--accent)} .st-en{font:500 23px/1.2 var(--f-disp)} .st-ko{font:600 16px/1.2 var(--f-ko);color:var(--muted)} .st-ja{font:600 16px/1.2 var(--f-ja);color:var(--muted)}
+.st-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chip{height:36px;padding:0 15px;border-radius:999px;border:1px solid var(--line);font-size:13px;color:var(--muted);transition:color .2s,border-color .2s}
+.chip[aria-pressed="true"]{color:var(--fg);border-color:var(--fg)}
+.st-stage{flex:1;display:grid;grid-template-columns:auto auto;justify-content:center;align-items:center;gap:40px 72px;width:100%;max-width:1240px;margin:0 auto;padding-block:28px 40px}
+
+.ob-wrap{--pw:clamp(220px,20vw,290px);--ph:calc(var(--pw)*1.42);--u:calc(var(--pw)/100);width:calc(var(--pw)*2 + 24px);height:calc(var(--ph) + 70px);
+  display:flex;align-items:center;perspective:1900px;perspective-origin:50% 10%}
+.ob{position:relative;width:var(--pw);height:var(--ph);margin-left:calc(var(--pw) + 12px);transform-style:preserve-3d;
+  transform:translateX(calc(var(--pw) * -.5)) rotateX(12deg) rotateY(40deg);transition:transform 1.1s var(--ease)}
+.study.is-open .ob{transform:translateX(0) rotateX(16deg) rotateY(0deg)}
+.ob-back{position:absolute;inset:-4px -6px -4px 0;transform:translateZ(calc(var(--u)*-6));border-radius:2px 5px 5px 2px;box-shadow:0 40px 60px -20px var(--shadow)}
+.ob-edge{position:absolute;left:0;right:0;bottom:0;height:calc(var(--u)*6);transform-origin:bottom center;transform:rotateX(90deg);
+  background:repeating-linear-gradient(0deg,#efe9da 0 1px,#d3cab4 1px 2px)}
+.ob-page{position:absolute;inset:0;overflow-y:auto;scrollbar-width:thin;color:var(--ink);border-radius:0 3px 3px 0;padding:calc(var(--u)*8) calc(var(--u)*7);
+  background:linear-gradient(90deg,rgba(0,0,0,.13),rgba(0,0,0,0) 9%),var(--grain),var(--paper)}
+.ix-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding-bottom:8px;margin-bottom:4px;border-bottom:1px solid var(--rule);font:500 10px/1 var(--f-mono);letter-spacing:.16em;color:var(--ink-2)}
+.ix-head span:first-child{font:italic 500 17px/1 var(--f-disp);letter-spacing:.02em;color:var(--ink)}
+.ix{list-style:none;margin:0;padding:0}
+.ix button{display:grid;grid-template-columns:22px minmax(0,1fr) 8px;gap:8px;align-items:center;width:100%;text-align:left;padding:5px 4px;border-bottom:1px dotted var(--rule);font-size:12.5px;line-height:1.35;color:var(--ink);border-radius:2px}
+.ix button:hover{background:rgba(0,0,0,.04)}
+.ix .n{font:400 10px var(--f-mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.ix .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ix .t i{font-style:normal;font-family:var(--f-ko);color:var(--ink-2);margin-left:6px;font-size:11.5px}
+.ix .s{width:7px;height:7px;border-radius:50%;border:1px solid var(--ink-2)}
+.ix .known .s{background:var(--pacc);border-color:var(--pacc)}
+.ix .cur{background:rgba(134,101,31,.1)} .ix .cur .n{color:var(--pacc)}
+.ix button.log{grid-template-columns:30px minmax(0,1fr) auto}
+.ix .log .n,.ix .log.cur .n{color:var(--stamp)}
+.ix .d{font:400 10px var(--f-mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.ix .log.known .t{color:var(--ink-2);text-decoration:line-through;text-decoration-color:var(--pacc)}
+.ix-empty{padding:14px 4px;font-size:12.5px;line-height:1.6;color:var(--ink-2)}
+.ob-cover{position:absolute;inset:-3px -5px -3px 0;transform-origin:left center;transform:translateZ(2px) rotateY(0deg);transform-style:preserve-3d;
+  transition:transform .7s cubic-bezier(.5,0,.3,1)}
+.study.is-open .ob-cover{transform:translateZ(2px) rotateY(-164deg);transition:transform 1.3s cubic-bezier(.65,.05,.25,1) .35s}
+.oc-front,.oc-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:2px 5px 5px 2px}
+.oc-front{box-shadow:inset 3px 0 0 rgba(0,0,0,.22),inset 0 0 50px rgba(0,0,0,.3)}
+.oc-back{transform:rotateY(180deg);border-radius:5px 2px 2px 5px;box-shadow:inset -10px 0 22px rgba(0,0,0,.35);
+  background:repeating-radial-gradient(circle at 18% 24%,transparent 0 9px,rgba(255,255,255,.09) 9px 10px),
+    repeating-radial-gradient(circle at 84% 72%,transparent 0 12px,rgba(255,255,255,.07) 12px 13px),
+    repeating-radial-gradient(circle at 36% 108%,transparent 0 7px,rgba(0,0,0,.14) 7px 8px),var(--c)}
+.plate{position:absolute;inset:15% 13%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--u)*3);
+  padding:calc(var(--u)*7);text-align:center;color:var(--ink);background:var(--grain),var(--paper);box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.plate::before{content:"";position:absolute;inset:calc(var(--u)*2.4);border:1px solid var(--rule);pointer-events:none}
+.p-ex{font:500 calc(var(--u)*3.4)/1 var(--f-mono);letter-spacing:.3em;color:var(--pacc)}
+.p-no{font:500 calc(var(--u)*14)/1 var(--f-disp)}
+.p-title{font:500 calc(var(--u)*9)/1.15 var(--f-disp)}
+.p-sub{font-size:calc(var(--u)*4.4);color:var(--ink-2);line-height:1.3}
+.p-desc{font-size:max(11px,calc(var(--u)*4.2));line-height:1.6;margin:calc(var(--u)*2) 0 0;text-wrap:pretty}
+.p-stat{font:500 max(10px,calc(var(--u)*3.6))/1 var(--f-mono);letter-spacing:.12em;color:var(--pacc);margin-top:calc(var(--u)*2)}
+
+/* ── cards ─────────────────────────────────────── */
+.deck-wrap{--cw:clamp(260px,min(calc(100vw - 40px),calc((100vh - 270px) / 1.4)),360px);display:grid;justify-items:center;gap:18px}
+.deck{position:relative;width:var(--cw);height:calc(var(--cw)*1.4);perspective:1500px;margin-bottom:30px}
+.card{--dx:0px;--dy:0px;--rz:0deg;--p:0;position:absolute;inset:0;transform-style:preserve-3d;touch-action:none;user-select:none;-webkit-user-select:none;
+  transition:transform .6s var(--ease),opacity .45s;border-radius:16px}
+.card[data-pos="0"]{transform:translate3d(var(--dx),var(--dy),0) rotate(var(--rz));cursor:grab}
+.card[data-pos="1"]{transform:translate3d(0,16px,-60px) rotate(-1.6deg)}
+.card[data-pos="2"]{transform:translate3d(0,32px,-120px) rotate(2deg)}
+.card[data-pos="3"]{transform:translate3d(0,44px,-180px);opacity:0}
+.card.dragging{transition:none;cursor:grabbing}
+.card:focus-visible{outline-offset:6px}
+.c-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.2,.4,1)}
+.card.flipped .c-inner{transform:rotateY(180deg)}
+.c-face{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;padding:24px 24px 20px;border-radius:16px;color:var(--ink);
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--grain),linear-gradient(160deg,var(--paper),var(--paper-2));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 44px 70px -34px var(--shadow),0 12px 22px -14px var(--shadow)}
+.c-face::before{content:"";position:absolute;inset:9px;border:1px solid var(--rule);border-radius:10px;pointer-events:none}
+.card[data-pos="1"] .c-face,.card[data-pos="2"] .c-face{filter:brightness(.95)}
+.c-back{transform:rotateY(180deg)}
+.c-head{display:flex;justify-content:space-between;gap:10px;font:500 11px/1.4 var(--f-mono);letter-spacing:.06em;color:var(--ink-2)}
+.c-no{color:var(--pacc)}
+.c-miss{margin-left:8px;color:var(--stamp)}
+.c-body{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding-inline:4px}
+.c-lang{display:flex;align-items:center;gap:10px;font:500 10.5px/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2)}
+.c-lang::before,.c-lang::after{content:"";width:18px;height:1px;background:var(--pacc);opacity:.6}
+.c-term{margin:0;line-height:1.25;font-weight:600;text-wrap:balance;overflow-wrap:anywhere}
+.c-term.ko,dd.ko{font-family:var(--f-ko)} .c-term.en,dd.en{font-family:var(--f-disp);font-weight:500} .c-term.ja,dd.ja{font-family:var(--f-ja)}
+.c-foot{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--ink-2)}
+.c-seal{width:32px;height:32px;border-radius:50%;border:1px solid var(--pacc);color:var(--pacc);display:grid;place-items:center;font:italic 500 16px/1 var(--f-disp)}
+.c-rows{margin:auto 0;padding-top:12px;display:grid}
+.row{display:grid;grid-template-columns:28px minmax(0,1fr) 30px;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule)}
+.row dt{font:500 10.5px/1 var(--f-mono);letter-spacing:.14em;color:var(--pacc)}
+.row dd{margin:0;line-height:1.3;font-weight:600;overflow-wrap:anywhere}
+.kana{display:block;margin-top:3px;font:400 12px/1.3 "IBM Plex Sans JP","Hiragino Sans",sans-serif;letter-spacing:.04em;color:var(--ink-2)}
+.say{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--rule);color:var(--ink-2);transition:color .2s,border-color .2s}
+.say:hover{color:var(--ink);border-color:var(--ink-2)}
+.no-tts .say{visibility:hidden}
+.c-tail{display:grid;gap:10px;padding-top:12px}
+.c-note{margin:0;font-size:12.5px;line-height:1.6;background:rgba(134,101,31,.09);border-radius:8px;padding:10px 12px;text-wrap:pretty}
+.c-note b{display:block;font:500 9.5px/1 var(--f-mono);letter-spacing:.18em;color:var(--pacc);margin-bottom:6px}
+.c-ref{margin:0;font:400 10.5px/1.4 var(--f-mono);color:var(--ink-2)}
+.stamp{position:absolute;top:20%;width:86px;height:86px;display:grid;place-items:center;border:3px double currentColor;border-radius:50%;
+  font:600 13px/1.1 var(--f-disp);letter-spacing:.1em;text-transform:uppercase;text-align:center;color:var(--stamp);opacity:var(--p);pointer-events:none;transform:translateZ(4px) rotate(-14deg)}
+.stamp.ok{right:22px} .stamp.re{left:22px;color:var(--ink-2);transform:translateZ(4px) rotate(12deg)}
+.card:not([data-dir="r"]) .stamp.ok,.card:not([data-dir="l"]) .stamp.re{opacity:0}
+.done-acts{display:grid;gap:8px;width:100%;max-width:230px;margin-top:6px}
+.done-acts .ctl{justify-content:center;color:var(--ink);border-color:var(--rule)}
+.done-acts .ctl.solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+.st-prog{display:flex;align-items:center;gap:14px;width:var(--cw);font:500 11.5px/1 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.st-prog .bar{flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.st-prog .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .5s var(--ease)}
+.controls{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.ctl{display:inline-flex;align-items:center;gap:9px;height:46px;padding:0 18px;border-radius:999px;border:1px solid var(--line);font-size:14px;font-weight:500;
+  transition:border-color .2s,background .2s,transform .15s,opacity .2s}
+.ctl:hover{border-color:var(--muted)} .ctl:active{transform:scale(.96)}
+.ctl.solid{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.ctl.icon{width:46px;padding:0;justify-content:center}
+.ctl:disabled{opacity:.3;cursor:default;transform:none}
+.ctl.ghost{height:38px;padding:0 14px;font-size:13px}
+@media (hover:none){kbd{display:none}}
+
+/* ── responsive ───────────────────────────────── */
+@media (max-width:979px){
+  .st-stage{grid-template-columns:minmax(0,1fr);justify-items:center;align-content:start}
+  .ob-wrap{order:2;width:100%;max-width:520px;height:auto;display:block;perspective:none}
+  .ob{transform:none!important;transition:none;width:auto;height:auto;margin:0}
+  .ob-back,.ob-edge,.ob-cover{display:none}
+  .ob-page{position:static;overflow:visible;border-radius:12px;padding:20px 18px;box-shadow:0 20px 40px -24px var(--shadow)}
+}
+@media (max-width:900px){
+  .shelf-scroll{overflow-x:auto;scroll-snap-type:x proximity;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+  .shelf{--bw:136px;justify-content:flex-start;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+  .slot{scroll-snap-align:center}
+}
+@media (max-width:720px){
+  .intro{grid-template-columns:minmax(0,1fr);padding-block:40px 0}
+  .plaque{grid-template-columns:minmax(0,1fr)} .pl-side{justify-items:start} .pl-no{font-size:40px}
+  .notes{grid-template-columns:minmax(0,1fr);gap:32px}
+  .brand-ko{display:none}
+  .shelf{--bw:118px}
+  .st-bar{gap:10px}
+  .ctl{padding:0 15px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-delay:0s!important}
+}
+</style>
+
+<main id="app" class="wrap">
+  <header class="top">
+    <div class="brand"><span class="brand-seal">P</span><span class="brand-name">Patent Lexicon</span><span class="brand-ko">Trilingual patent terms</span></div>
+    <div class="seg" role="group" aria-label="Card front language"><span class="seg-label">Front</span><button type="button" data-front="en">EN</button><button type="button" data-front="ko">KO</button><button type="button" data-front="ja">JA</button></div>
+  </header>
+
+  <section class="intro">
+    <div>
+      <p class="eyebrow">Patent Lexicon · EN / KO / JA · <span id="volCount">9</span> volumes</p>
+      <h1>One term,<br><em>three languages.</em></h1>
+      <p class="triplet" id="triplet"><span class="en">Notice of reasons for refusal</span><span class="sl">/</span><span class="ko" lang="ko">거절이유통지</span><span class="sl">/</span><span class="ja" lang="ja">拒絶理由通知</span></p>
+    </div>
+    <div>
+      <p class="lede"><b id="termCount">126</b> patent terms in English, Korean and Japanese, from filing to trials, PCT and semiconductor specifications. Pick a volume, open it, and work through the cards.</p>
+      <div class="intro-acts">
+        <button type="button" class="btn btn-solid" id="allBtn">Review all, shuffled</button>
+        <span class="stat">Known <b id="knownAll">0</b> / <span id="termCount2">126</span> · Mistakes <b id="wrongAll">0</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="shelf-stage" id="shelfStage" aria-label="Bookshelf">
+    <div class="shelf-scroll"><div class="shelf" id="shelf"></div></div>
+  </section>
+
+  <section class="plaque" id="plaque"></section>
+
+  <section class="notes">
+    <div>
+      <h3>How it works</h3>
+      <ol>
+        <li>Pick a volume from the shelf and open it.</li>
+        <li>Tap a card to flip it. The back shows all three languages, the Japanese reading and a practice note.</li>
+        <li>Swipe right if you know it, left to see it again. Each spine counts the cards you know, and every miss is filed in Vol. X, the Mistakes notebook, with a count and date.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Keyboard</h3>
+      <dl class="keys">
+        <dt><kbd>Space</kbd></dt><dd>Flip card</dd>
+        <dt><kbd>→</kbd></dt><dd>Got it</dd>
+        <dt><kbd>←</kbd></dt><dd>Again</dd>
+        <dt><kbd>Z</kbd></dt><dd>Undo</dd>
+        <dt><kbd>Esc</kbd></dt><dd>Back to the shelf</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>Sources</h3>
+      <p>Article numbers follow the Korean Patent Act and the Japanese Patent Act. English terms follow common WIPO and JPO usage. Practice notes are written in Korean. This is a study aid, so check current statutes and examination guidelines before relying on it.</p>
+      <p>Progress is saved in this browser only. <button type="button" class="link" id="resetBtn">Clear progress</button></p>
+    </div>
+  </section>
+
+  <footer class="foot"><span>Patent Lexicon</span><span>English · Korean · Japanese</span></footer>
+</main>
+
+<section class="study" id="study" hidden role="dialog" aria-modal="true" aria-labelledby="stTitle">
+  <div class="st-bar">
+    <button type="button" class="ctl ghost" id="closeBtn">← Shelf</button>
+    <h2 class="st-title" id="stTitle"></h2>
+    <div class="st-tools">
+      <div class="seg" role="group" aria-label="Card front language"><span class="seg-label">Front</span><button type="button" data-front="en">EN</button><button type="button" data-front="ko">KO</button><button type="button" data-front="ja">JA</button></div>
+      <button type="button" class="chip" id="shuffleBtn" aria-pressed="false">Shuffle</button>
+      <button type="button" class="chip" id="unknownBtn" aria-pressed="false">Unknown only</button>
+    </div>
+  </div>
+  <div class="st-stage">
+    <div class="ob-wrap">
+      <div class="ob" id="ob">
+        <div class="ob-back cloth"></div>
+        <div class="ob-edge"></div>
+        <div class="ob-page" id="obPage">
+          <div class="ix-head"><span id="ixTitle">Contents</span><span id="ixSub">EN · KO</span></div>
+          <ol class="ix" id="ix"></ol>
+        </div>
+        <div class="ob-cover">
+          <div class="oc-front cloth" id="ocFront"></div>
+          <div class="oc-back"><div class="plate" id="plate"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="deck-wrap">
+      <div class="deck" id="deck"></div>
+      <div class="st-prog"><span id="pos">1 / 1</span><span class="bar"><i id="bar"></i></span><span id="kn">Known 0</span></div>
+      <div class="controls">
+        <button type="button" class="ctl icon" id="undoBtn" aria-label="Undo"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.8-6.3"/><path d="M3.5 4.5v5h5"/></svg></button>
+        <button type="button" class="ctl" id="againBtn"><kbd>←</kbd>Again</button>
+        <button type="button" class="ctl" id="flipBtn">Flip<kbd>Space</kbd></button>
+        <button type="button" class="ctl solid" id="knowBtn">Got it<kbd>→</kbd></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// [한국어, English, 日本語, よみ, 실무 메모?, 조문?]
+const VOLS = [
+{no:'I', ja:'出願', ko:'출원', en:'Filing', mark:'F', c:'#1F2D4A', foil:'gold',
+ desc:'From the day you file to publication and the request for examination. Every deadline starts here.', t:[
+ ['출원','Application','出願','しゅつがん','‘출원하다’는 出願する, 영어로는 file an application.'],
+ ['출원인','Applicant','出願人','しゅつがんにん'],
+ ['발명자','Inventor','発明者','はつめいしゃ'],
+ ['출원일','Filing date','出願日','しゅつがんび','존속기간과 심사청구 기한을 세는 기준일.'],
+ ['우선권 주장','Priority claim','優先権主張','ゆうせんけんしゅちょう','파리조약 우선기간은 최초 출원일부터 12개월.','특허법 54조 · 特許法 43条'],
+ ['우선일','Priority date','優先日','ゆうせんび','PCT 기한(국제공개 18개월, 국내단계 30·31개월)은 우선일부터 센다.'],
+ ['국내우선권','Domestic priority','国内優先権','こくないゆうせんけん','먼저 낸 자국 출원을 기초로 1년 안에 개량발명을 묶어 다시 출원한다.','특허법 55조 · 特許法 41条'],
+ ['분할출원','Divisional application','分割出願','ぶんかつしゅつがん','출원일은 원출원일로 소급. 단일성 거절에 대응할 때 자주 쓴다.','특허법 52조 · 特許法 44条'],
+ ['변경출원','Conversion of application','出願の変更','しゅつがんのへんこう','실용신안등록출원을 특허출원으로 바꾸는 절차. 일본 실무에선 変更出願이라고도 한다.','특허법 53조 · 特許法 46条'],
+ ['출원공개','Publication of application','出願公開','しゅつがんこうかい','출원일(우선일)부터 1년 6개월이 지나면 공개된다.','특허법 64조 · 特許法 64条'],
+ ['심사청구','Request for examination','出願審査の請求','しゅつがんしんさのせいきゅう','한국·일본 모두 출원일부터 3년. 기한을 넘기면 취하 간주.','특허법 59조 · 特許法 48条の3'],
+ ['우선심사','Accelerated examination','早期審査','そうきしんさ','일본의 優先審査는 제3자가 실시 중일 때만 쓰는 별도 제도. 일반적인 신청은 早期審査.'],
+ ['공지예외주장','Grace period (exception to lack of novelty)','新規性喪失の例外','しんきせいそうしつのれいがい','공개일부터 한국 12개월, 일본 1년 안에 출원해야 한다.','특허법 30조 · 特許法 30条'],
+ ['대리인','Representative','代理人','だいりにん'],
+ ['변리사','Patent attorney','弁理士','べんりし','미국은 patent attorney(변호사)와 patent agent를 구분한다.'],
+]},
+{no:'II', ja:'明細書', ko:'명세서', en:'Specification', mark:'S', c:'#1D3B32', foil:'gold',
+ desc:'The document that puts an invention into words. Korean and Japanese section headings map almost one to one.', t:[
+ ['명세서','Specification','明細書','めいさいしょ','일본은 特許請求の範囲를 明細書와 별개 서류로 낸다. 한국 명세서는 발명의 설명과 청구범위로 이뤄진다.'],
+ ['발명의 설명','Description','発明の詳細な説明','はつめいのしょうさいなせつめい','한국도 2014년 개정 전에는 ‘발명의 상세한 설명’이었다.','특허법 42조 3항 · 特許法 36条4項'],
+ ['기술분야','Technical field','技術分野','ぎじゅつぶんや'],
+ ['배경기술','Background art','背景技術','はいけいぎじゅつ'],
+ ['선행기술문헌','Citation list','先行技術文献','せんこうぎじゅつぶんけん','일본 명세서는 【特許文献1】처럼 번호를 붙여 인용한다.'],
+ ['해결하려는 과제','Technical problem','発明が解決しようとする課題','はつめいがかいけつしようとするかだい'],
+ ['과제의 해결 수단','Solution to problem','課題を解決するための手段','かだいをかいけつするためのしゅだん'],
+ ['발명의 효과','Advantageous effects of invention','発明の効果','はつめいのこうか'],
+ ['도면의 간단한 설명','Brief description of drawings','図面の簡単な説明','ずめんのかんたんなせつめい','“도 1은 ~의 단면도이다”는 「図1は、〜の断面図である。」'],
+ ['발명을 실시하기 위한 구체적인 내용','Description of embodiments','発明を実施するための形態','はつめいをじっしするためのけいたい'],
+ ['실시예','Embodiment · Example','実施形態・実施例','じっしけいたい・じっしれい','일본은 구현 형태를 実施形態, 구체적인 실험예를 実施例로 나눠 쓰는 경향이 있다.'],
+ ['부호의 설명','Reference signs list','符号の説明','ふごうのせつめい'],
+ ['요약서','Abstract','要約書','ようやくしょ','권리범위를 정할 때 요약서는 고려하지 않는다.','특허법 43조 · 特許法 70条3項'],
+ ['도면','Drawings','図面','ずめん'],
+ ['단락 번호','Paragraph number','段落番号','だんらくばんごう','한국은 [0001], 일본은 【0001】. 이 카드 왼쪽 위 번호도 같은 형식이다.'],
+]},
+{no:'III', ja:'請求項', ko:'청구항', en:'Claims', mark:'C', c:'#5B1F25', foil:'gold',
+ desc:'The sentences that draw the boundary of a right, down to Japanese claim phrases like 前記 and 備える.', t:[
+ ['청구범위','Claims','特許請求の範囲','とっきょせいきゅうのはんい','','특허법 42조 4항 · 特許法 36条5項'],
+ ['청구항','Claim','請求項','せいきゅうこう','일본 서식은 【請求項1】처럼 쓴다.'],
+ ['독립항','Independent claim','独立請求項','どくりつせいきゅうこう','실무에서는 独立項이라고 줄여 말한다.'],
+ ['종속항','Dependent claim','従属請求項','じゅうぞくせいきゅうこう','줄여서 従属項.'],
+ ['다중 종속항','Multiple dependent claim','多項従属請求項','たこうじゅうぞくせいきゅうこう','일본은 2022년 4월 출원부터 다중종속항을 인용하는 다중종속항(マルチマルチクレーム)을 금지했다.'],
+ ['구성요소','Claim element','構成要件','こうせいようけん','침해 판단은 구성요소별 대비표(クレームチャート)로 한다.'],
+ ['상기','said · the','前記','ぜんき','앞에 나온 구성을 다시 가리킬 때. 当該(とうがい)도 쓴다.'],
+ ['~를 포함하는','comprising','〜を備える・〜を含む','〜をそなえる・〜をふくむ','장치 청구항은 備える, 조성물은 含む를 많이 쓴다.'],
+ ['~로 이루어진','consisting of','〜からなる','〜からなる','からなる는 열린 해석과 닫힌 해석이 갈릴 수 있어 쓸 때 주의.'],
+ ['~를 특징으로 하는','characterized in that','〜ことを特徴とする','〜ことをとくちょうとする'],
+ ['제1항에 있어서','The … of claim 1, wherein','請求項1に記載の〜において','せいきゅうこういちにきさいの〜において','「請求項1に記載の装置であって、」 형태도 흔하다.'],
+ ['복수의','a plurality of','複数の','ふくすうの'],
+ ['적어도 하나의','at least one','少なくとも1つの','すくなくともひとつの'],
+ ['~로 이루어진 군에서 선택되는','selected from the group consisting of','〜からなる群から選択される','〜からなるぐんからせんたくされる','마쿠시(Markush) 형식 청구항의 관용구.'],
+ ['단계','step','工程・ステップ','こうてい・ステップ','제조방법은 工程, 정보처리 방법은 ステップ를 많이 쓴다.'],
+ ['~부','unit','〜部','〜ぶ','제어부는 制御部(せいぎょぶ), 수단은 手段(しゅだん).'],
+]},
+{no:'IV', ja:'審査', ko:'심사', en:'Examination', mark:'E', c:'#8A6B2C', foil:'ink',
+ desc:'The papers you trade with the examiner, from the notice of reasons for refusal to the decision to grant.', t:[
+ ['심사관','Examiner','審査官','しんさかん'],
+ ['거절이유','Reasons for refusal','拒絶理由','きょぜつりゆう','일본·유럽 영문은 refusal, 미국은 rejection을 쓴다.'],
+ ['거절이유통지','Notice of reasons for refusal','拒絶理由通知','きょぜつりゆうつうち','미국식으로는 Office Action. 일본 의견서 제출기간은 국내 거주자 60일, 재외자 3개월.','특허법 63조 · 特許法 50条'],
+ ['최후거절이유통지','Final notice of reasons for refusal','最後の拒絶理由通知','さいごのきょぜつりゆうつうち','이후 보정은 청구범위 감축 등으로 제한된다.','특허법 47조 3항 · 特許法 17条の2第5項'],
+ ['의견서','Written argument','意見書','いけんしょ'],
+ ['보정','Amendment','補正','ほせい','','특허법 47조 · 特許法 17条の2'],
+ ['보정서','Written amendment','手続補正書','てつづきほせいしょ','일본 서식 이름은 補正書가 아니라 手続補正書.'],
+ ['신규사항 추가','Addition of new matter','新規事項の追加','しんきじこうのついか','최초 명세서에 없던 내용을 넣는 보정은 금지.','특허법 47조 2항 · 特許法 17条の2第3項'],
+ ['인용문헌','Cited document','引用文献','いんようぶんけん','일본 거절이유통지서에는 【引用文献1】처럼 적힌다.'],
+ ['면담','Examiner interview','面接','めんせつ','일본은 화상 면접도 받아준다.'],
+ ['거절결정','Decision of refusal','拒絶査定','きょぜつさてい','일본은 심사관의 결정을 査定(さてい)이라고 부른다.','특허법 62조 · 特許法 49条'],
+ ['특허결정','Decision to grant a patent','特許査定','とっきょさてい','','특허법 66조 · 特許法 51条'],
+ ['설정등록','Registration','設定登録','せっていとうろく','특허료를 내고 설정등록되어야 특허권이 생긴다.','특허법 87조 · 特許法 66条'],
+ ['기간연장','Extension of time','期間延長','きかんえんちょう'],
+]},
+{no:'V', ja:'特許要件', ko:'특허요건', en:'Patentability', mark:'P', c:'#234549', foil:'gold',
+ desc:'Novelty, inventive step and the description requirements. The words that come up most in refusals.', t:[
+ ['산업상 이용가능성','Industrial applicability','産業上の利用可能性','さんぎょうじょうのりようかのうせい','','특허법 29조 1항 · 特許法 29条1項'],
+ ['신규성','Novelty','新規性','しんきせい','','특허법 29조 1항 · 特許法 29条1項'],
+ ['진보성','Inventive step','進歩性','しんぽせい','미국은 non-obviousness, 유럽과 PCT는 inventive step.','특허법 29조 2항 · 特許法 29条2項'],
+ ['통상의 기술자','Person skilled in the art','当業者','とうぎょうしゃ','한국 법문은 ‘그 발명이 속하는 기술분야에서 통상의 지식을 가진 사람’.'],
+ ['선행기술','Prior art','先行技術','せんこうぎじゅつ'],
+ ['공지','Publicly known','公知','こうち','공지·공연 실시·간행물 게재가 신규성을 잃는 사유.'],
+ ['선출원주의','First-to-file principle','先願主義','せんがんしゅぎ','','특허법 36조 · 特許法 39条'],
+ ['확대된 선원','Enlarged scope of earlier application','拡大先願','かくだいせんがん','일본에서는 準公知(じゅんこうち)라고도 부른다.','특허법 29조 3항 · 特許法 29条の2'],
+ ['실시가능 요건','Enablement requirement','実施可能要件','じっしかのうようけん','','특허법 42조 3항 1호 · 特許法 36条4項1号'],
+ ['뒷받침 요건','Support requirement','サポート要件','サポートようけん','청구항이 발명의 설명에 의해 뒷받침될 것.','특허법 42조 4항 1호 · 特許法 36条6項1号'],
+ ['명확성 요건','Clarity requirement','明確性要件','めいかくせいようけん','','특허법 42조 4항 2호 · 特許法 36条6項2号'],
+ ['기재불비','Deficiency in description','記載不備','きさいふび','실시가능·뒷받침·명확성 위반을 묶어 부르는 실무 용어.'],
+ ['발명의 단일성','Unity of invention','発明の単一性','はつめいのたんいつせい','','특허법 45조 · 特許法 37条'],
+]},
+{no:'VI', ja:'審判', ko:'심판·소송', en:'Trials', mark:'T', c:'#3C2444', foil:'gold',
+ desc:'Appeals and disputes over a granted right. Korean and Japanese procedure part ways here more than anywhere.', t:[
+ ['특허심판원','Intellectual Property Trial and Appeal Board','審判部','しんぱんぶ','일본은 특허청 안의 審判部가 심판을 맡는다.'],
+ ['거절결정불복심판','Appeal against decision of refusal','拒絶査定不服審判','きょぜつさていふふくしんぱん','청구기간은 한국·일본 모두 결정등본을 받은 날부터 3개월.','특허법 132조의17 · 特許法 121条'],
+ ['전치심사','Pre-appeal reexamination','前置審査','ぜんちしんさ','불복심판과 함께 보정하면 원래 심사관이 먼저 다시 본다. 한국은 2009년 이 제도를 없애고 재심사 청구를 도입했다.','特許法 162条'],
+ ['무효심판','Invalidation trial','無効審判','むこうしんぱん','','특허법 133조 · 特許法 123条'],
+ ['정정심판','Correction trial','訂正審判','ていせいしんぱん','','특허법 136조 · 特許法 126条'],
+ ['정정청구','Request for correction','訂正の請求','ていせいのせいきゅう','무효심판 안에서 하는 정정은 정정심판이 아니라 정정청구.','특허법 133조의2 · 特許法 134条の2'],
+ ['권리범위확인심판','Trial to confirm the scope of a patent right','判定','はんてい','일본에는 같은 심판이 없다. 특허청의 判定은 구속력 없는 감정 의견.','특허법 135조 · 特許法 71条'],
+ ['특허취소신청','Post-grant opposition','特許異議の申立て','とっきょいぎのもうしたて','한국은 2017년 도입. 두 나라 모두 등록공보 발행 후 6개월 안에 낸다.','특허법 132조의2 · 特許法 113条'],
+ ['심결','Trial decision','審決','しんけつ'],
+ ['심결취소소송','Action against a trial decision','審決取消訴訟','しんけつとりけしそしょう','한국은 특허법원, 일본은 지적재산고등재판소(知財高裁)가 맡는다.','특허법 186조 · 特許法 178条'],
+]},
+{no:'VII', ja:'権利', ko:'권리·침해', en:'Rights', mark:'R', c:'#3E4426', foil:'gold',
+ desc:'Life after registration: licenses, infringement, injunctions and damages.', t:[
+ ['특허권','Patent right','特許権','とっきょけん'],
+ ['특허권자','Patentee','特許権者','とっきょけんじゃ'],
+ ['존속기간','Patent term','存続期間','そんぞくきかん','설정등록일부터 출원일 후 20년이 되는 날까지.','특허법 88조 · 特許法 67条'],
+ ['특허료','Annual fee','特許料','とっきょりょう','일본 실무에서는 연차료를 年金(ねんきん)이라고도 부른다.','특허법 79조 · 特許法 107条'],
+ ['실시','Working of an invention','実施','じっし','물건 발명이면 생산·사용·양도·대여·수입·청약 등.','특허법 2조 3호 · 特許法 2条3項'],
+ ['전용실시권','Exclusive license','専用実施権','せんようじっしけん','등록해야 효력이 생긴다.','특허법 100조 · 特許法 77条'],
+ ['통상실시권','Non-exclusive license','通常実施権','つうじょうじっしけん','','특허법 102조 · 特許法 78条'],
+ ['침해','Infringement','侵害','しんがい'],
+ ['간접침해','Indirect infringement','間接侵害','かんせつしんがい','법문 표현은 한국 ‘침해로 보는 행위’, 일본 「侵害とみなす行為」.','특허법 127조 · 特許法 101条'],
+ ['균등론','Doctrine of equivalents','均等論','きんとうろん','일본의 균등 5요건은 ボールスプライン 사건(最判平成10年2月24日)에서 나왔다.'],
+ ['금지청구','Injunction','差止請求','さしとめせいきゅう','','특허법 126조 · 特許法 100条'],
+ ['손해배상','Damages','損害賠償','そんがいばいしょう','두 나라 모두 손해액 추정 규정을 따로 둔다.','특허법 128조 · 特許法 102条'],
+ ['선사용권','Prior user right','先使用権','せんしようけん','일본 법문은 「先使用による通常実施権」.','특허법 103조 · 特許法 79条'],
+ ['직무발명','Employee invention','職務発明','しょくむはつめい','한국은 발명진흥법, 일본은 특허법 35조에 둔다.','발명진흥법 2조 · 特許法 35条'],
+ ['권리소진','Patent exhaustion','消尽','しょうじん'],
+]},
+{no:'VIII', ja:'国際出願', ko:'국제출원', en:'PCT', mark:'P', c:'#D5CEBB', foil:'ink',
+ desc:'One filing, many countries. The documents and deadlines of each PCT stage.', t:[
+ ['특허협력조약','Patent Cooperation Treaty (PCT)','特許協力条約','とっきょきょうりょくじょうやく'],
+ ['파리조약','Paris Convention','パリ条約','パリじょうやく','우선기간은 특허·실용신안 12개월, 디자인·상표 6개월.'],
+ ['국제출원','International application','国際出願','こくさいしゅつがん'],
+ ['수리관청','Receiving Office (RO)','受理官庁','じゅりかんちょう'],
+ ['국제조사기관','International Searching Authority (ISA)','国際調査機関','こくさいちょうさきかん'],
+ ['국제조사보고서','International search report (ISR)','国際調査報告','こくさいちょうさほうこく','일본어에는 ‘보고서’의 書가 붙지 않는다.'],
+ ['견해서','Written opinion of the ISA','国際調査機関の見解書','こくさいちょうさきかんのけんかいしょ'],
+ ['국제공개','International publication','国際公開','こくさいこうかい','우선일부터 18개월.'],
+ ['19조 보정','Article 19 amendment','19条補正','じゅうきゅうじょうほせい','국제조사보고서를 받은 뒤 청구범위만 고칠 수 있다.'],
+ ['국제예비심사','International preliminary examination','国際予備審査','こくさいよびしんさ','34조 보정은 이 단계에서 한다.'],
+ ['지정국','Designated State','指定国','していこく'],
+ ['국내단계 진입','National phase entry','国内移行','こくないいこう','기한은 우선일부터 한국 31개월, 일본 30개월.','특허법 201조 · 特許法 184条の4'],
+ ['번역문','Translation','翻訳文','ほんやくぶん'],
+]},
+{no:'IX', ja:'半導体', ko:'반도체', en:'Semiconductors', mark:'S', c:'#1B1D21', foil:'silver',
+ desc:'Technical terms from every semiconductor specification. Watch the Japanese katakana spellings.', t:[
+ ['반도체 장치','Semiconductor device','半導体装置','はんどうたいそうち'],
+ ['기판','Substrate','基板','きばん'],
+ ['웨이퍼','Wafer','ウエハ','ウエハ','특허 문서에서는 장음 없이 ウエハ가 흔하다.'],
+ ['채널','Channel','チャネル','チャネル','반도체에서는 チャンネル이 아니라 チャネル.'],
+ ['게이트 절연막','Gate insulating film','ゲート絶縁膜','ゲートぜつえんまく'],
+ ['층간 절연막','Interlayer insulating film','層間絶縁膜','そうかんぜつえんまく'],
+ ['불순물 영역','Impurity region','不純物領域','ふじゅんぶつりょういき'],
+ ['소자 분리 영역','Element isolation region','素子分離領域','そしぶんりりょういき'],
+ ['식각','Etching','エッチング','エッチング'],
+ ['증착','Deposition','成膜・堆積','せいまく・たいせき','막을 만든다는 뜻이면 成膜, 쌓아 올린다는 뜻이면 堆積.'],
+ ['평탄화','Planarization','平坦化','へいたんか','CMP는 化学機械研磨(かがくきかいけんま).'],
+ ['배선','Wiring','配線','はいせん'],
+ ['관통 전극','Through electrode (TSV)','貫通電極','かんつうでんきょく'],
+ ['적층','Stacking','積層','せきそう'],
+ ['단면도','Cross-sectional view','断面図','だんめんず','평면도는 平面図(へいめんず).'],
+]},
+];
+
+document.documentElement.lang = 'en';
+const $ = (s, r = document) => r.querySelector(s);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const LANG = { en: { label: 'English', tts: 'en-US' }, ko: { label: 'Korean', tts: 'ko-KR' }, ja: { label: 'Japanese', tts: 'ja-JP' } };
+const FOIL = { gold: ['var(--gold)', '#C8A65C'], silver: ['var(--silver)', '#C3C7CD'], ink: ['var(--inkfoil)', '#1E1B15'] };
+const POS = ['translate3d(0px,0px,0px) rotate(0deg)', 'translate3d(0px,16px,-60px) rotate(-1.6deg)', 'translate3d(0px,32px,-120px) rotate(2deg)'];
+const SPEAK = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.2L12 18.5v-13L7.2 9.5H4z"/><path d="M15.5 9.2a3.8 3.8 0 0 1 0 5.6M18 6.6a7.5 7.5 0 0 1 0 10.8"/></svg>';
+
+const ALL = [];
+VOLS.forEach((v, vi) => {
+  v.items = v.t.map((r, i) => {
+    const it = { id: vi + '-' + i, v, ko: r[0], en: r[1], ja: r[2], kana: r[3], note: r[4] || '', ref: r[5] || '' };
+    ALL.push(it);
+    return it;
+  });
+});
+console.assert(ALL.every(it => it.ko && it.en && it.ja && it.kana), 'term is missing a language or reading');
+const COMP = { no: 'I–IX', ja: '総覧', ko: '총람', en: 'Compendium', mark: 'C', c: '#17181C', foil: 'gold', desc: 'All nine volumes shuffled together, for a last pass before the exam.', items: ALL };
+// Vol. X collects every card marked Again; most-missed first
+const NOTE = { no: 'X', ja: '誤答ノート', ko: '오답노트', en: 'Mistakes', mark: 'X', c: '#8F2C22', foil: 'gold', note: true,
+  desc: 'Every card you mark Again is filed here with how often and when you missed it. Get it right to clear it.',
+  get items() { return ALL.filter(it => wrong[it.id]).sort((a, b) => wrong[b.id].n - wrong[a.id].n || wrong[b.id].t - wrong[a.id].t); } };
+const SHELF = [...VOLS, NOTE];
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+const known = new Set(store.get('lexicon.known', []));
+let front = store.get('lexicon.front', 'en');
+if (!LANG[front]) front = 'en';
+const saveKnown = () => store.set('lexicon.known', [...known]);
+const wrong = (o => o && typeof o === 'object' && !Array.isArray(o) ? o : {})(store.get('lexicon.wrong', {})); // id → { n: times missed, t: last miss }
+const saveWrong = () => store.set('lexicon.wrong', wrong);
+const activeWrong = () => NOTE.items.filter(it => !known.has(it.id));
+const countKnown = items => items.reduce((n, it) => n + (known.has(it.id) ? 1 : 0), 0);
+const pad = (n, w) => String(n).padStart(w, '0');
+const day = t => { const d = new Date(t); return `${d.getMonth() + 1}/${d.getDate()}`; };
+
+const vars = v => { const [f, fs] = FOIL[v.foil]; return `--c:${v.c};--foil:${f};--fs:${fs}`; };
+const NB_COVER = '<div class="nb-label"><span class="nb-no">X</span><span class="nb-title">Mistakes</span><span class="nb-sub">WRONG-ANSWER NOTEBOOK</span><span class="nb-lines"></span></div><span class="nb-band"></span>';
+const coverHTML = v => v.note ? NB_COVER : `<div class="cv"><span class="cv-no foil">${v.no}</span><div class="cv-mid"><span class="cv-seal"><span class="foil">${v.mark}</span></span><span class="cv-title foil">${v.en}</span><span class="cv-sub">EN · KO · JA</span></div><span class="cv-foot">PATENT LEXICON</span></div>`;
+
+/* ── shelf ─────────────────────────────────────── */
+const shelf = $('#shelf');
+shelf.innerHTML = SHELF.map((v, i) => `<button type="button" class="slot${v.note ? ' nb' : ''}" style="--i:${i};${vars(v)}" data-v="${i}" aria-label="Open Vol. ${v.no}: ${v.en}">
+  <div class="book">
+    <div class="face cover cloth">${coverHTML(v)}</div>
+    <div class="face back cloth"></div>
+    <div class="face spine cloth"><div class="sp"><span class="sp-band"></span><span class="sp-no foil">${v.no}</span><span class="sp-title foil">${v.en}</span><span class="sp-fill"></span><span class="sp-count foil" data-count="${i}"></span><span class="sp-band"></span></div></div>
+    <div class="face edge"></div>
+    <div class="face topf"></div>
+  </div></button>`).join('');
+shelf.style.setProperty('--mid', (SHELF.length - 1) / 2);
+
+const stage = $('#shelfStage');
+stage.addEventListener('pointermove', e => {
+  if (e.pointerType !== 'mouse') return;
+  const r = stage.getBoundingClientRect();
+  shelf.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 2 - 1).toFixed(3));
+  shelf.style.setProperty('--my', ((e.clientY - r.top) / r.height * 2 - 1).toFixed(3));
+});
+stage.addEventListener('pointerleave', () => { shelf.style.setProperty('--mx', 0); shelf.style.setProperty('--my', 0); });
+shelf.addEventListener('click', e => { const s = e.target.closest('.slot'); if (s) openStudy(SHELF[s.dataset.v], s); });
+const hover = e => { const s = e.target.closest('.slot'); if (s) showPlaque(SHELF[s.dataset.v]); };
+shelf.addEventListener('pointerover', hover);
+shelf.addEventListener('focusin', hover);
+
+/* ── plaque & counts ──────────────────────────── */
+const plaque = $('#plaque');
+let plaqueV = null;
+const sample = (v, n) => v.note
+  ? (n ? `Most missed: ${v.items.slice(0, 3).map(it => it.en).join(' · ')}` : 'Empty for now. Swipe a card left and it lands here.')
+  : `${v.items.slice(0, 4).map(it => it.en).join(' · ')} and ${n - 4} more`;
+function showPlaque(v, force) {
+  if (v === plaqueV && !force) return;
+  plaqueV = v;
+  const k = countKnown(v.items), n = v.items.length;
+  plaque.innerHTML = `<div class="pl-no"><small>Volume</small>${v.no}</div>
+    <div><h2 class="pl-titles"><span class="pl-en">${v.en}</span><span class="pl-ko" lang="ko">${v.ko}</span><span class="pl-ja" lang="ja">${v.ja}</span></h2>
+    <p class="pl-desc">${v.desc}</p><p class="pl-sample">${sample(v, n)}</p></div>
+    <div class="pl-side"><span class="pl-stat">${v.note ? `${n - k} to review · ${n} missed` : `${n} terms · ${k} known`}</span><span class="meter"><i style="width:${n ? k / n * 100 : 0}%"></i></span>
+    <button type="button" class="btn" data-open>${v.note ? 'Open notebook' : `Open Vol. ${v.no}`} →</button></div>`;
+}
+plaque.addEventListener('click', e => {
+  if (!e.target.closest('[data-open]')) return;
+  const i = SHELF.indexOf(plaqueV);
+  openStudy(plaqueV, shelf.children[i]);
+});
+function updateCounts() {
+  SHELF.forEach((v, i) => { shelf.querySelector(`[data-count="${i}"]`).textContent = v.note ? activeWrong().length : `${countKnown(v.items)}/${v.items.length}`; });
+  $('#knownAll').textContent = countKnown(ALL);
+  $('#wrongAll').textContent = activeWrong().length;
+  if (plaqueV) showPlaque(plaqueV, true);
+}
+$('#termCount').textContent = $('#termCount2').textContent = ALL.length;
+$('#volCount').textContent = VOLS.length;
+
+/* ── hero triplet ─────────────────────────────── */
+const trip = $('#triplet');
+if (!reduce) setInterval(() => {
+  if (document.hidden || !$('#study').hidden) return;
+  trip.classList.add('swap');
+  setTimeout(() => {
+    const it = ALL[Math.random() * ALL.length | 0];
+    trip.querySelector('.ko').textContent = it.ko;
+    trip.querySelector('.en').textContent = it.en;
+    trip.querySelector('.ja').textContent = it.ja;
+    trip.classList.remove('swap');
+  }, 430);
+}, 3800);
+
+/* ── front language ───────────────────────────── */
+const syncFront = () => document.querySelectorAll('[data-front]').forEach(b => b.setAttribute('aria-pressed', b.dataset.front === front));
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-front]');
+  if (!b) return;
+  front = b.dataset.front;
+  store.set('lexicon.front', front);
+  syncFront();
+  if (S) { clearDeck(); renderDeck(); appear(); }
+});
+
+/* ── speech ───────────────────────────────────── */
+const tts = 'speechSynthesis' in window;
+if (!tts) document.documentElement.classList.add('no-tts');
+function say(it, k) {
+  if (!tts) return;
+  const text = (k === 'ja' ? it.kana : it[k]).replace(/[〜~…]/g, '').replace(/\s*[・·/]\s*/g, k === 'en' ? ', ' : '、');
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = LANG[k].tts;
+  u.rate = .92;
+  const voice = speechSynthesis.getVoices().find(x => x.lang.replace('_', '-').startsWith(LANG[k].tts.slice(0, 2)));
+  if (voice) u.voice = voice;
+  speechSynthesis.speak(u);
+}
+
+/* ── study session ────────────────────────────── */
+const app = $('#app'), study = $('#study'), deck = $('#deck'), ix = $('#ix'), obPage = $('#obPage');
+const els = new Map();
+let S = null, lastFocus = null, closing = false, closeAnim = null;
+
+function fit(s, k) {
+  const n = [...s].length * (k === 'en' ? .5 : 1);
+  return n <= 3 ? 56 : n <= 5 ? 48 : n <= 7 ? 40 : n <= 10 ? 34 : n <= 14 ? 28 : n <= 20 ? 24 : 21;
+}
+function row(it, k) {
+  const val = k === 'ja' ? `${it.ja}${it.kana !== it.ja ? `<span class="kana">${it.kana}</span>` : ''}` : it[k];
+  const size = [...it[k]].length * (k === 'en' ? .5 : 1) > 12 ? 16 : 19;
+  return `<div class="row"><dt>${k.toUpperCase()}</dt><dd class="${k}" lang="${k}" style="font-size:${size}px">${val}</dd><button type="button" class="say" data-say="${k}" aria-label="Listen in ${LANG[k].label}">${SPEAK}</button></div>`;
+}
+function head(it, idx) {
+  return `<div class="c-head"><span class="c-no">【${pad(idx + 1, 4)}】${wrong[it.id] ? `<span class="c-miss" title="Missed ${wrong[it.id].n} times">✕ ${wrong[it.id].n}</span>` : ''}</span><span>${it.v.no} · ${it.v.en}</span></div>`;
+}
+function makeCard(it, idx) {
+  const el = document.createElement('div');
+  el.className = 'card';
+  el._it = it;
+  el.setAttribute('role', 'button');
+  el.setAttribute('aria-label', `${it[front]} (${LANG[front].label}). Press to see all three languages`);
+  el.innerHTML = `<div class="c-inner">
+    <div class="c-face c-front">${head(it, idx)}
+      <div class="c-body"><span class="c-lang">${LANG[front].label}</span><p class="c-term ${front}" lang="${front}" style="font-size:${fit(it[front], front)}px">${it[front]}</p></div>
+      <div class="c-foot"><span>Tap to flip</span><span class="c-seal">${it.v.mark}</span></div></div>
+    <div class="c-face c-back">${head(it, idx)}
+      <dl class="c-rows">${['en', 'ko', 'ja'].map(k => row(it, k)).join('')}</dl>
+      <div class="c-tail">${it.note ? `<p class="c-note"><b>Practice note</b>${it.note}</p>` : ''}${it.ref ? `<p class="c-ref">${it.ref}</p>` : ''}</div></div>
+  </div><span class="stamp ok" aria-hidden="true">Got<br>it</span><span class="stamp re" aria-hidden="true">Again</span>`;
+  return el;
+}
+function makeDone() {
+  const v = S.v, n = v.items.length, k = countKnown(v.items), left = n - k, empty = v.note && !n;
+  const el = document.createElement('div');
+  el.className = 'card done';
+  el.dataset.pos = '0';
+  el.innerHTML = `<div class="c-inner"><div class="c-face c-front">
+    <div class="c-head"><span class="c-no">【FIN】</span><span>${v.no} · ${v.en}</span></div>
+    <div class="c-body"><span class="c-lang">${empty ? 'Empty notebook' : S.q.length ? 'Round complete' : 'No cards left'}</span>
+      <p class="c-term en" style="font-size:36px">${empty ? 'No mistakes<br>yet' : left ? `${k} of ${n}<br>known` : `All ${n}<br>known`}</p>
+      <div class="done-acts">${left ? `<button type="button" class="ctl solid" data-act="unknown">Review ${left} unknown</button>` : ''}${empty ? '' : '<button type="button" class="ctl" data-act="restart">Start over</button>'}<button type="button" class="ctl" data-act="close">Back to shelf</button></div></div>
+    <div class="c-foot"><span>${v.note ? 'Cards you mark Again land here' : 'Known cards show on the spine'}</span><span class="c-seal">${v.mark}</span></div></div></div>`;
+  return el;
+}
+
+function clearDeck() { deck.innerHTML = ''; els.clear(); }
+function topCard() { return S && els.get(S.q[S.i]?.id); }
+
+function renderDeck() {
+  const vis = S.q.slice(S.i, S.i + 3);
+  for (const [id, el] of els) if (!vis.includes(el._it)) { el.remove(); els.delete(id); }
+  const done = $('.card.done', deck);
+  if (done && S.i < S.q.length) done.remove();
+  vis.forEach((it, p) => {
+    let el = els.get(it.id);
+    if (!el) {
+      el = makeCard(it, S.q.indexOf(it));
+      if (p) { el.dataset.pos = '3'; deck.append(el); void el.offsetWidth; } else deck.append(el);
+      els.set(it.id, el);
+    }
+    el.dataset.pos = p;
+    el.style.zIndex = 9 - p;
+    el.tabIndex = p ? -1 : 0;
+    el.setAttribute('aria-hidden', p ? 'true' : 'false');
+  });
+  if (S.i >= S.q.length && !$('.card.done', deck)) deck.append(makeDone());
+  // progress
+  const n = S.q.length, k = countKnown(S.v.items);
+  $('#pos').textContent = `${Math.min(S.i + 1, n)} / ${n}`;
+  $('#bar').style.width = (n ? S.i / n * 100 : 100) + '%';
+  $('#kn').textContent = `Known ${k} / ${S.v.items.length}`;
+  $('#plateStat').textContent = S.v.note ? `${S.v.items.length} MISSED · ${k} CLEARED` : `${S.v.items.length} TERMS · ${k} KNOWN`;
+  $('#undoBtn').disabled = !S.hist.length;
+  ['againBtn', 'flipBtn', 'knowBtn'].forEach(id => { $('#' + id).disabled = S.i >= n; });
+  renderIndex();
+}
+function renderIndex() {
+  const cur = S.q[S.i];
+  if (S.v.note) ix.innerHTML = S.v.items.map(it => `<li><button type="button" data-jump="${it.id}" class="log${known.has(it.id) ? ' known' : ''}${it === cur ? ' cur' : ''}"><span class="n">×${wrong[it.id].n}</span><span class="t">${it.en}<i lang="ko">${it.ko}</i></span><span class="d">${day(wrong[it.id].t)}</span></button></li>`).join('')
+    || '<li class="ix-empty">Cards you mark <b>Again</b> are filed here with how many times you missed them and when.</li>';
+  else ix.innerHTML = S.v.items.map((it, n) => `<li><button type="button" data-jump="${it.id}" class="${known.has(it.id) ? 'known' : ''}${it === cur ? ' cur' : ''}"><span class="n">${pad(n + 1, 2)}</span><span class="t">${it.en}<i lang="ko">${it.ko}</i></span><span class="s" aria-label="${known.has(it.id) ? 'known' : 'not yet'}"></span></button></li>`).join('');
+  const c = $('.cur', ix);
+  if (c && matchMedia('(min-width: 980px)').matches) obPage.scrollTo({ top: c.offsetTop - obPage.clientHeight / 2, behavior: reduce ? 'auto' : 'smooth' });
+}
+
+function build() {
+  let list = S.v.items;
+  if (S.unknownOnly) list = list.filter(it => !known.has(it.id));
+  if (S.shuffle) {
+    list = [...list];
+    for (let i = list.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [list[i], list[j]] = [list[j], list[i]]; }
+  }
+  S.q = list; S.i = 0; S.hist = [];
+  $('#shuffleBtn').setAttribute('aria-pressed', S.shuffle);
+  $('#unknownBtn').setAttribute('aria-pressed', S.unknownOnly);
+  clearDeck();
+  renderDeck();
+}
+function appear() {
+  if (reduce) return;
+  (topCard() || $('.card.done', deck))?.animate([{ opacity: 0, transform: 'translate3d(0px,26px,-70px) rotate(0deg)' }, { opacity: 1, transform: POS[0] }], { duration: 420, easing: 'cubic-bezier(.2,.7,.2,1)' });
+}
+function deal() {
+  if (reduce) return;
+  deck.querySelectorAll('.card').forEach(el => {
+    const p = +el.dataset.pos || 0;
+    el.animate([{ opacity: 0, transform: 'translate3d(-75%,14%,-280px) rotateY(-55deg) rotate(-10deg)' }, { opacity: 1, transform: POS[p] }],
+      { duration: 950, delay: 700 + (2 - p) * 120, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' });
+  });
+}
+
+function openStudy(v, from) {
+  // reopening mid-close: drop the pending close so it cannot hide the new session
+  if (closeAnim) { closeAnim.onfinish = null; closeAnim.cancel(); closeAnim = null; closing = false; }
+  lastFocus = from || document.activeElement;
+  S = { v, q: [], i: 0, hist: [], shuffle: v === COMP, unknownOnly: !!v.note };
+  $('#ob').style.cssText = vars(v);
+  $('#ocFront').innerHTML = coverHTML(v);
+  $('#plate').innerHTML = `<span class="p-ex">EX LIBRIS</span><span class="p-no">${v.no}</span><span class="p-title">${v.en}</span><span class="p-sub">Patent Lexicon</span><p class="p-desc">${v.desc}</p><span class="p-stat" id="plateStat"></span>`;
+  $('#stTitle').innerHTML = `<span class="st-no">${v.no}</span><span class="st-en">${v.en}</span><span class="st-ko" lang="ko">${v.ko}</span><span class="st-ja" lang="ja">${v.ja}</span>`;
+  $('#ixTitle').textContent = v.note ? 'Mistake log' : 'Contents';
+  $('#ixSub').textContent = v.note ? 'MISSED · LAST' : 'EN · KO';
+  study.classList.remove('is-open');
+  study.hidden = false;
+  study.scrollTop = 0;
+  app.inert = true;
+  document.body.classList.add('locked');
+  build();
+  void study.offsetWidth;
+  study.classList.add('is-open');
+  if (!reduce) { study.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, easing: 'ease-out' }); deal(); }
+  setTimeout(() => (topCard() || $('#closeBtn')).focus({ preventScroll: true }), reduce ? 0 : 1100);
+}
+function closeStudy() {
+  if (study.hidden || closing) return;
+  closing = true;
+  if (tts) speechSynthesis.cancel();
+  study.classList.remove('is-open');
+  const a = closeAnim = study.animate([{ opacity: 1 }, { opacity: 0 }], { duration: reduce ? 1 : 360, delay: reduce ? 0 : 460, easing: 'ease-in', fill: 'forwards' });
+  a.onfinish = () => {
+    study.hidden = true;
+    a.cancel();
+    closeAnim = null;
+    closing = false;
+    app.inert = false;
+    document.body.classList.remove('locked');
+    clearDeck();
+    S = null;
+    updateCounts();
+    lastFocus?.focus({ preventScroll: true });
+  };
+}
+
+function fly(el, dir) {
+  const t = getComputedStyle(el).transform;
+  el.style.transition = 'none';
+  el.style.transform = t;
+  el.dataset.pos = 'out';
+  el.style.zIndex = 20;
+  el.tabIndex = -1;
+  el.setAttribute('aria-hidden', 'true');
+  if (reduce) return el.remove();
+  el.animate([{ transform: t }, { transform: `translate3d(${dir * 135}%,-6%,80px) rotate(${dir * 24}deg)`, opacity: 0 }],
+    { duration: 560, easing: 'cubic-bezier(.35,.1,.6,1)', fill: 'forwards' }).onfinish = () => el.remove();
+}
+function answer(knew) {
+  if (!S || S.i >= S.q.length) return;
+  const it = S.q[S.i], el = els.get(it.id), wasFocused = document.activeElement === el;
+  S.hist.push({ it, had: known.has(it.id), w: wrong[it.id] ? { ...wrong[it.id] } : null, dir: knew ? 1 : -1 });
+  knew ? known.add(it.id) : known.delete(it.id);
+  if (!knew) wrong[it.id] = { n: (wrong[it.id]?.n || 0) + 1, t: Date.now() };
+  saveKnown(); saveWrong();
+  if (el) { els.delete(it.id); fly(el, knew ? 1 : -1); }
+  S.i++;
+  renderDeck();
+  if (wasFocused) (topCard() || $('.card.done button', deck))?.focus({ preventScroll: true });
+}
+function undo() {
+  if (!S || !S.hist.length) return;
+  const h = S.hist.pop();
+  h.had ? known.add(h.it.id) : known.delete(h.it.id);
+  if (h.w) wrong[h.it.id] = h.w; else delete wrong[h.it.id];
+  saveKnown(); saveWrong();
+  deck.querySelectorAll('.card[data-pos="out"]').forEach(e => { if (e._it === h.it) e.remove(); });
+  S.i--;
+  renderDeck();
+  const el = els.get(h.it.id);
+  if (el && !reduce) el.animate([{ opacity: 0, transform: `translate3d(${h.dir * 135}%,-6%,80px) rotate(${h.dir * 24}deg)` }, { opacity: 1, transform: POS[0] }], { duration: 480, easing: 'cubic-bezier(.2,.7,.2,1)' });
+}
+function flip() { topCard()?.classList.toggle('flipped'); }
+function jump(id) {
+  let k = S.q.findIndex(it => it.id === id);
+  if (k < 0) { S.unknownOnly = false; S.shuffle = false; build(); k = S.q.findIndex(it => it.id === id); }
+  S.i = k; S.hist = [];
+  clearDeck(); renderDeck(); appear();
+}
+
+/* drag to answer: right = 알아요, left = 다시 */
+let drag = null;
+deck.addEventListener('pointerdown', e => {
+  if (e.button > 0 || e.target.closest('button')) return;
+  const el = e.target.closest('.card');
+  if (!el || el.dataset.pos !== '0' || el.classList.contains('done')) return;
+  drag = { el, id: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, dy: 0 };
+  el.setPointerCapture(e.pointerId);
+  el.classList.add('dragging');
+});
+deck.addEventListener('pointermove', e => {
+  if (!drag || e.pointerId !== drag.id) return;
+  drag.dx = e.clientX - drag.x;
+  drag.dy = e.clientY - drag.y;
+  const s = drag.el.style;
+  s.setProperty('--dx', drag.dx + 'px');
+  s.setProperty('--dy', drag.dy * .3 + 'px');
+  s.setProperty('--rz', drag.dx * .05 + 'deg');
+  s.setProperty('--p', Math.min(1, Math.abs(drag.dx) / 120).toFixed(2));
+  drag.el.dataset.dir = drag.dx > 0 ? 'r' : 'l';
+});
+function endDrag(e) {
+  if (!drag || e.pointerId !== drag.id) return;
+  const { el, dx, dy } = drag;
+  drag = null;
+  el.classList.remove('dragging');
+  if (Math.abs(dx) > 110) return answer(dx > 0);
+  ['--dx', '--dy', '--rz', '--p'].forEach(p => el.style.removeProperty(p));
+  delete el.dataset.dir;
+  if (e.type === 'pointerup' && Math.hypot(dx, dy) < 6) flip();
+}
+deck.addEventListener('pointerup', endDrag);
+deck.addEventListener('pointercancel', endDrag);
+deck.addEventListener('click', e => {
+  const s = e.target.closest('.say');
+  if (s) return say(s.closest('.card')._it, s.dataset.say);
+  const a = e.target.closest('[data-act]');
+  if (!a) return;
+  if (a.dataset.act === 'close') return closeStudy();
+  S.unknownOnly = a.dataset.act === 'unknown';
+  build(); appear();
+  topCard()?.focus({ preventScroll: true });
+});
+ix.addEventListener('click', e => { const b = e.target.closest('[data-jump]'); if (b) jump(b.dataset.jump); });
+
+$('#againBtn').onclick = () => answer(false);
+$('#knowBtn').onclick = () => answer(true);
+$('#flipBtn').onclick = flip;
+$('#undoBtn').onclick = undo;
+$('#closeBtn').onclick = closeStudy;
+$('#shuffleBtn').onclick = () => { S.shuffle = !S.shuffle; build(); appear(); };
+$('#unknownBtn').onclick = () => { S.unknownOnly = !S.unknownOnly; build(); appear(); };
+$('#allBtn').onclick = () => openStudy(COMP, $('#allBtn'));
+
+document.addEventListener('keydown', e => {
+  if (study.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+  const onButton = e.target.closest?.('button');
+  const k = e.key;
+  if (k === 'Escape') closeStudy();
+  else if ((k === ' ' || k === 'Enter') && !onButton) flip();
+  else if (k === 'ArrowRight') answer(true);
+  else if (k === 'ArrowLeft') answer(false);
+  else if (k === 'Backspace' || k === 'z' || k === 'Z') undo();
+  else return;
+  e.preventDefault();
+});
+
+const resetBtn = $('#resetBtn');
+resetBtn.onclick = () => {
+  if (!resetBtn.dataset.arm) {
+    resetBtn.dataset.arm = '1';
+    resetBtn.textContent = 'Click again to clear';
+    setTimeout(() => { if (resetBtn.dataset.arm) { delete resetBtn.dataset.arm; resetBtn.textContent = 'Clear progress'; } }, 4000);
+    return;
+  }
+  delete resetBtn.dataset.arm;
+  known.clear(); saveKnown(); for (const id in wrong) delete wrong[id]; saveWrong(); updateCounts();
+  resetBtn.textContent = 'Progress cleared';
+  setTimeout(() => { resetBtn.textContent = 'Clear progress'; }, 2200);
+};
+
+syncFront();
+showPlaque(VOLS[2]);
+updateCounts();
+</script>
