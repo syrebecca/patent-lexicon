@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="126 patent terms in English, Korean and Japanese, bound in nine 3D volumes of flashcards.">
+<meta name="description" content="177 patent terms in English, Korean and Japanese, bound in twelve 3D volumes of flashcards.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%2316181B'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='34' text-anchor='middle' fill='%23CFAE66'%3EP%3C/text%3E%3C/svg%3E">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Patent Lexicon</title>
@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+JP:wght@400;600;700&family=Noto+Serif+KR:wght@400;600;700&display=swap">
 <style>
-/* Layout: a spot-lit gallery shelf of nine cloth-bound volumes, a museum plaque under it, then notes.
+/* Layout: a spot-lit gallery shelf of cloth-bound volumes plus a red notebook, a museum plaque under it, then notes.
    Study view: the chosen volume lies open on the left (index page), the card deck stands on the right. */
 :root{
   --bg:#DFE0DB; --bg-2:#D1D2CC; --fg:#16181B; --muted:#5A5E64; --line:rgba(22,24,27,.14);
@@ -85,7 +85,7 @@ h1{font-family:var(--f-disp);font-weight:500;font-size:clamp(42px,6.2vw,84px);li
 .shelf-stage::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 46% 62% at 50% 62%,var(--spot),transparent 72%);pointer-events:none}
 .shelf-scroll{position:relative;scrollbar-width:none}
 .shelf-scroll::-webkit-scrollbar{display:none}
-.shelf{--bw:clamp(136px,13.5vw,190px);--bh:calc(var(--bw)*1.45);--bd:calc(var(--bw)*.27);--slot:calc(var(--bw)*.62);--mid:4;--mx:0;--my:0;
+.shelf{--n:10;--bw:clamp(124px,calc((min(100vw,1240px) - 64px) / (var(--n) * .62 + .5)),190px);--bh:calc(var(--bw)*1.45);--bd:calc(var(--bw)*.27);--slot:calc(var(--bw)*.62);--mid:4;--mx:0;--my:0;
   position:relative;display:flex;justify-content:center;align-items:flex-end;width:max-content;min-width:100%;padding-block:64px 44px;margin:0 auto}
 .shelf::after{content:"";position:absolute;left:0;right:0;bottom:44px;height:1px;background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
 .slot{position:relative;z-index:1;flex:none;width:var(--slot);height:calc(var(--bh) + 26px);display:flex;align-items:flex-end;justify-content:center;
@@ -141,7 +141,7 @@ h1{font-family:var(--f-disp);font-weight:500;font-size:clamp(42px,6.2vw,84px);li
 .sp-fill{flex:1}
 .sp-count{font-family:var(--f-mono);font-size:calc(var(--u)*5);font-variant-numeric:tabular-nums}
 
-/* Vol. X: a red notebook with a paper label and an elastic band */
+/* The mistakes notebook: a red notebook with a paper label and an elastic band */
 .slot.nb{margin-left:calc(var(--bw)*.22)}
 .nb-label{position:absolute;left:13%;right:17%;top:20%;display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*2.6);
   padding:calc(var(--u)*6) calc(var(--u)*4) calc(var(--u)*4);text-align:center;line-height:1;color:var(--ink);background:var(--grain),var(--paper);border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.4)}
@@ -304,7 +304,7 @@ h1{font-family:var(--f-disp);font-weight:500;font-size:clamp(42px,6.2vw,84px);li
   .ob-back,.ob-edge,.ob-cover{display:none}
   .ob-page{position:static;overflow:visible;border-radius:12px;padding:20px 18px;box-shadow:0 20px 40px -24px var(--shadow)}
 }
-@media (max-width:900px){
+@media (max-width:1100px){
   .shelf-scroll{overflow-x:auto;scroll-snap-type:x proximity;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
   .shelf{--bw:136px;justify-content:flex-start;padding-inline:max(16px,env(safe-area-inset-left,0px))}
   .slot{scroll-snap-align:center}
@@ -333,15 +333,15 @@ h1{font-family:var(--f-disp);font-weight:500;font-size:clamp(42px,6.2vw,84px);li
 
   <section class="intro">
     <div>
-      <p class="eyebrow">Patent Lexicon · EN / KO / JA · <span id="volCount">9</span> volumes</p>
+      <p class="eyebrow">Patent Lexicon · EN / KO / JA · <span id="volCount">12</span> volumes</p>
       <h1>One term,<br><em>three languages.</em></h1>
       <p class="triplet" id="triplet"><span class="en">Notice of reasons for refusal</span><span class="sl">/</span><span class="ko" lang="ko">거절이유통지</span><span class="sl">/</span><span class="ja" lang="ja">拒絶理由通知</span></p>
     </div>
     <div>
-      <p class="lede"><b id="termCount">126</b> patent terms in English, Korean and Japanese, from filing to trials, PCT and semiconductor specifications. Pick a volume, open it, and work through the cards.</p>
+      <p class="lede"><b id="termCount">177</b> patent terms in English, Korean and Japanese, from filing and examiner calls to trials, PCT and semiconductor specifications. Pick a volume, open it, and work through the cards.</p>
       <div class="intro-acts">
         <button type="button" class="btn btn-solid" id="allBtn">Review all, shuffled</button>
-        <span class="stat">Known <b id="knownAll">0</b> / <span id="termCount2">126</span> · Mistakes <b id="wrongAll">0</b></span>
+        <span class="stat">Known <b id="knownAll">0</b> / <span id="termCount2">177</span> · Mistakes <b id="wrongAll">0</b></span>
       </div>
     </div>
   </section>
@@ -481,7 +481,7 @@ const VOLS = [
  desc:'The papers you trade with the examiner, from the notice of reasons for refusal to the decision to grant.', t:[
  ['심사관','Examiner','審査官','しんさかん'],
  ['거절이유','Reasons for refusal','拒絶理由','きょぜつりゆう','일본·유럽 영문은 refusal, 미국은 rejection을 쓴다.'],
- ['거절이유통지','Notice of reasons for refusal','拒絶理由通知','きょぜつりゆうつうち','미국식으로는 Office Action. 일본 의견서 제출기간은 국내 거주자 60일, 재외자 3개월.','특허법 63조 · 特許法 50条'],
+ ['거절이유통지','Notice of reasons for refusal','拒絶理由通知','きょぜつりゆうつうち','한국 서식 이름은 의견제출통지서, 미국식으로는 Office Action. 일본 의견서 제출기간은 국내 거주자 60일, 재외자 3개월.','특허법 63조 · 特許法 50条'],
  ['최후거절이유통지','Final notice of reasons for refusal','最後の拒絶理由通知','さいごのきょぜつりゆうつうち','이후 보정은 청구범위 감축 등으로 제한된다.','특허법 47조 3항 · 特許法 17条の2第5項'],
  ['의견서','Written argument','意見書','いけんしょ'],
  ['보정','Amendment','補正','ほせい','','특허법 47조 · 特許法 17条の2'],
@@ -575,6 +575,66 @@ const VOLS = [
  ['적층','Stacking','積層','せきそう'],
  ['단면도','Cross-sectional view','断面図','だんめんず','평면도는 平面図(へいめんず).'],
 ]},
+{no:'X', ja:'実務', ko:'사무소 실무', en:'Practice', mark:'P', c:'#4B3A2A', foil:'gold',
+ desc:'The everyday words of a patent office: deadlines, powers of attorney, foreign associates and searches.', t:[
+ ['중간사건','Prosecution (office action work)','中間処理','ちゅうかんしょり','출원과 등록 사이, 거절이유에 대응하는 일을 통틀어 부른다. 영어권에선 OA 대응.'],
+ ['기한관리','Docketing','期限管理','きげんかんり','사무소마다 기한 담당자를 두고 이중으로 확인한다. 기한 하나 놓치면 권리가 날아간다.'],
+ ['법정기간','Statutory period','法定期間','ほうていきかん','법이 직접 정한 기간. 연장은 법에 적힌 경우에만 된다.','특허법 15조 1항 · 特許法 4条'],
+ ['지정기간','Designated period','指定期間','していきかん','심사관 등이 정해 주는 기간. 의견서 제출기간이 대표적이고 연장 신청이 된다.','특허법 15조 2항 · 特許法 5条'],
+ ['기간 도과','Missed deadline','期間徒過','きかんとか','“기한을 놓쳤다”는 期間を徒過した. 일본은 2023년 4월부터 회복 요건을 ‘고의가 아닐 것’으로 완화했다.'],
+ ['위임장','Power of attorney','委任状','いにんじょう'],
+ ['포괄위임','General power of attorney','包括委任状','ほうかついにんじょう','한 번 등록하면 사건마다 위임장을 내지 않고 등록번호만 적는다.'],
+ ['특허관리인','Patent administrator','特許管理人','とっきょかんりにん','국내에 주소가 없는 재외자(在外者)를 대리하는 국내 대리인. 재외자는 원칙적으로 이를 통해서만 절차를 밟는다.','특허법 5조 · 特許法 8条'],
+ ['현지대리인','Foreign associate','現地代理人','げんちだいりにん','해외 출원 때 그 나라에서 일을 맡기는 사무소. 영어 메일에선 local agent, associate.'],
+ ['우선권 증명서류','Priority document','優先権証明書','ゆうせんけんしょうめいしょ','우선일부터 1년 4개월 안에 낸다. 한·일 모두 WIPO DAS 접근코드로 대신할 수 있다.','특허법 54조 · 特許法 43条'],
+ ['출원경과 서류','File wrapper','包袋','ほうたい','심사 중 주고받은 서류 묶음. 일본은 지금도 包袋閲覧(열람)처럼 옛 이름을 쓴다.'],
+ ['출원경과 금반언','Prosecution history estoppel','包袋禁反言','ほうたいきんはんげん','의견서·보정으로 스스로 뺀 범위는 나중에 균등론으로 되찾을 수 없다.'],
+ ['선행기술조사','Prior art search','先行技術調査','せんこうぎじゅつちょうさ','출원 전에는 등록 가능성을, 심사 대응 때는 반론 근거를 찾는다.'],
+ ['무효자료조사','Invalidity search','無効資料調査','むこうしりょうちょうさ','경고장을 받았을 때 상대 특허를 깰 문헌을 찾는다.'],
+ ['침해예방조사','Freedom-to-operate (FTO) search','侵害予防調査','しんがいよぼうちょうさ','제품을 내기 전에 남의 특허를 밟는지 확인한다. 실무에선 FTO라는 말을 더 많이 쓴다.'],
+ ['직무발명신고서','Invention disclosure form','発明届出書','はつめいとどけでしょ','명세서 작업은 이 서류와 발명자 미팅에서 시작한다.'],
+ ['출원번호','Application number','出願番号','しゅつがんばんごう','한국은 10-2024-0012345(10이 특허), 일본은 特願2024-012345. 통화하면 이 번호부터 묻는다.'],
+]},
+{no:'XI', ja:'面接・応対', ko:'심사관 협의', en:'Interviews', mark:'I', c:'#4E5A63', foil:'silver',
+ desc:'What you say when the examiner calls: draft amendments, allowable claims and the limits on amending.', t:[
+ ['화상면담','Online interview','オンライン面接','オンラインめんせつ','일본은 심사청구부터 특허사정 송달(또는 전치심사 종료)까지 면담을 받는다.'],
+ ['면담기록','Interview record','面接記録','めんせつきろく','합의한 내용이 출원경과에 남는다. 면담에서 한 말도 금반언의 근거가 될 수 있다.'],
+ ['통화기록','Record of telephone communication','応対記録','おうたいきろく','일본 특허청은 전화·팩스·메일로 주고받은 내용을 応対記録으로 남긴다.'],
+ ['보정안','Draft amendment','補正案','ほせいあん','면담 전에 보내 두면 해소 여부를 미리 들을 수 있다. 한국은 보정안 리뷰 제도가 따로 있다.'],
+ ['보정 제안','Suggested amendment','補正の示唆','ほせいのしさ','일본 심사관은 거절이유통지에 보정 방향을 적극 적어 준다. 법적 효과는 없다.'],
+ ['직권보정','Examiner’s amendment','職権補正','しょっけんほせい','특허결정 때 심사관이 명백한 잘못을 직접 고친다. 출원인이 받아들이지 않으면 처음부터 없던 것이 된다.','특허법 66조의2'],
+ ['특허 가능한 청구항','Allowable claim','拒絶の理由を発見しない請求項','きょぜつのりゆうをはっけんしないせいきゅうこう','일본 거절이유통지 끝에 따로 적힌다. 이 청구항을 독립항에 합치는 게 가장 빠른 등록 경로.'],
+ ['거절이유 해소','Overcoming the reasons for refusal','拒絶理由の解消','きょぜつりゆうのかいしょう','“본 보정으로 거절이유가 해소되었습니다”는 「本補正により、拒絶理由は解消しました。」'],
+ ['청구범위 감축','Restriction of claims','特許請求の範囲の減縮','とっきょせいきゅうのはんいのげんしゅく','최후거절이유통지 뒤 허용되는 보정 목적. 일본은 발명특정사항을 좁히는 限定的減縮이어야 한다.','특허법 47조 3항 1호 · 特許法 17条の2第5項2号'],
+ ['오기의 정정','Correction of errors','誤記の訂正','ごきのていせい','','특허법 47조 3항 2호 · 特許法 17条の2第5項3号'],
+ ['불명확한 기재의 명확화','Clarification of ambiguous statements','明瞭でない記載の釈明','めいりょうでないきさいのしゃくめい','','특허법 47조 3항 3호 · 特許法 17条の2第5項4号'],
+ ['보정각하','Dismissal of amendment','補正の却下','ほせいのきゃっか','최후거절이유통지 뒤 허용 범위를 넘은 보정은 결정으로 각하된다.','특허법 51조 · 特許法 53条'],
+ ['시프트 보정','Shift amendment','シフト補正','シフトほせい','거절이유통지 뒤 특별한 기술적 특징이 다른 발명으로 청구항을 갈아타는 보정. 일본은 금지한다.','特許法 17条の2第4項'],
+ ['재심사청구','Request for reexamination','再審査の請求','さいしんさのせいきゅう','거절결정 뒤 보정과 함께 내면 거절결정이 취소된 것으로 보고 다시 심사한다. 일본에선 前置審査가 비슷한 역할.','특허법 67조의2'],
+ ['정보제공','Third-party submission','情報提供','じょうほうていきょう','누구나 심사 중인 출원에 선행기술을 낼 수 있다. 경쟁사 출원을 견제할 때 쓴다.','특허법 63조의2 · 特許法施行規則 13条の2'],
+ ['착수 예정 시기','Expected start of examination','着手見通し時期','ちゃくしゅみとおしじき','“언제 심사가 시작되나요?”의 답. 일본 특허청은 着手見通し時期照会로 알려 준다.'],
+]},
+{no:'XII', ja:'進歩性の論理', ko:'진보성 대응', en:'Arguments', mark:'A', c:'#2C2A4A', foil:'gold',
+ desc:'How an inventive-step rejection is built, and the words you use to take it apart.', t:[
+ ['인용발명','Cited invention','引用発明','いんようはつめい','거절이유에 쓰인 문헌(인용문헌)에 적힌 발명.'],
+ ['주인용발명','Primary reference','主引用発明','しゅいんようはつめい','청구항과 가장 가까운 인용발명. 여기서 차이점을 뽑는다.'],
+ ['부인용발명','Secondary reference','副引用発明','ふくいんようはつめい','차이점을 메우려고 가져오는 두 번째 문헌.'],
+ ['공통점','Common features','一致点','いっちてん','일본 거절이유통지는 一致点과 相違点을 나눠 적는다.'],
+ ['차이점','Difference','相違点','そういてん','반론은 차이점 하나를 정확히 잡는 데서 시작한다.'],
+ ['결합의 동기','Motivation to combine','動機付け','どうきづけ','일본 심사기준은 기술분야의 관련성, 과제·작용·기능의 공통성, 인용발명 속 시사를 본다.'],
+ ['저해요인','Teaching away','阻害要因','そがいよういん','결합하면 주인용발명의 목적에 반하게 되는 사정. 진보성을 인정하는 쪽으로 작용한다.'],
+ ['사후적 고찰','Hindsight','後知恵','あとぢえ','본원 발명을 알고 나서 문헌을 짜 맞추는 판단. 반론에서 자주 쓰는 말.'],
+ ['단순한 설계변경','Mere design variation','設計変更','せっけいへんこう','일본 심사기준은 設計変更等으로 묶어 쓴다. 거절 논리의 단골.'],
+ ['통상의 창작능력 발휘','Exercise of ordinary creativity','通常の創作能力の発揮','つうじょうのそうさくのうりょくのはっき','최적 재료 선택, 수치범위 최적화, 균등물 치환 같은 것을 가리킨다.'],
+ ['현저한 효과','Remarkable effect','顕著な効果','けんちょなこうか','인용발명으로는 예측할 수 없는 효과. 미국식으로는 unexpected results.'],
+ ['실험성적증명서','Declaration of experimental results','実験成績証明書','じっけんせいせきしょうめいしょ','효과를 주장할 때 의견서에 붙이는 실험 데이터. 미국에선 Rule 132 declaration.'],
+ ['주지관용기술','Well-known and commonly used art','周知慣用技術','しゅうちかんようぎじゅつ','심사관이 문헌 없이 주지기술이라고 하면 근거를 보여 달라고 반론하기도 한다.'],
+ ['상위개념','Generic concept','上位概念','じょういがいねん','하위개념(下位概念)이 공지되면 상위개념 청구항은 신규성이 없다. 반대는 성립하지 않는다.'],
+ ['수치한정발명','Numerical limitation invention','数値限定発明','すうちげんていはつめい','범위 안팎에서 효과가 달라지는 임계적 의의(臨界的意義)를 보여야 한다.'],
+ ['선택발명','Selection invention','選択発明','せんたくはつめい','상위개념으로 공지된 것 중 일부를 골라낸 발명. 고른 범위에서만 나는 현저한 효과가 필요하다.'],
+ ['제조방법이 기재된 물건 청구항','Product-by-process claim','プロダクト・バイ・プロセス・クレーム','プロダクト・バイ・プロセス・クレーム','일본은 2015년 최고재판소 판결 뒤 명확성 요건이 엄해졌다. 줄여서 PBP 클레임.'],
+ ['상업적 성공','Commercial success','商業的成功','しょうぎょうてきせいこう','진보성을 뒷받침하는 보조 사정. 그 성공이 발명의 기술적 특징에서 나왔다는 것까지 보여야 한다.'],
+]},
 ];
 
 document.documentElement.lang = 'en';
@@ -594,9 +654,9 @@ VOLS.forEach((v, vi) => {
   });
 });
 console.assert(ALL.every(it => it.ko && it.en && it.ja && it.kana), 'term is missing a language or reading');
-const COMP = { no: 'I–IX', ja: '総覧', ko: '총람', en: 'Compendium', mark: 'C', c: '#17181C', foil: 'gold', desc: 'All nine volumes shuffled together, for a last pass before the exam.', items: ALL };
-// Vol. X collects every card marked Again; most-missed first
-const NOTE = { no: 'X', ja: '誤答ノート', ko: '오답노트', en: 'Mistakes', mark: 'X', c: '#8F2C22', foil: 'gold', note: true,
+const COMP = { no: 'I–' + VOLS.at(-1).no, ja: '総覧', ko: '총람', en: 'Compendium', mark: 'C', c: '#17181C', foil: 'gold', desc: 'Every volume shuffled together, for a last pass before the exam.', items: ALL };
+// The last book (after the volumes) collects every card marked Again; most-missed first
+const NOTE = { no: 'XIII', ja: '誤答ノート', ko: '오답노트', en: 'Mistakes', mark: 'X', c: '#8F2C22', foil: 'gold', note: true,
   desc: 'Every card you mark Again is filed here with how often and when you missed it. Get it right to clear it.',
   get items() { return ALL.filter(it => wrong[it.id]).sort((a, b) => wrong[b.id].n - wrong[a.id].n || wrong[b.id].t - wrong[a.id].t); } };
 const SHELF = [...VOLS, NOTE];
@@ -617,7 +677,7 @@ const pad = (n, w) => String(n).padStart(w, '0');
 const day = t => { const d = new Date(t); return `${d.getMonth() + 1}/${d.getDate()}`; };
 
 const vars = v => { const [f, fs] = FOIL[v.foil]; return `--c:${v.c};--foil:${f};--fs:${fs}`; };
-const NB_COVER = '<div class="nb-label"><span class="nb-no">X</span><span class="nb-title">Mistakes</span><span class="nb-sub">WRONG-ANSWER NOTEBOOK</span><span class="nb-lines"></span></div><span class="nb-band"></span>';
+const NB_COVER = `<div class="nb-label"><span class="nb-no">${NOTE.no}</span><span class="nb-title">Mistakes</span><span class="nb-sub">WRONG-ANSWER NOTEBOOK</span><span class="nb-lines"></span></div><span class="nb-band"></span>`;
 const coverHTML = v => v.note ? NB_COVER : `<div class="cv"><span class="cv-no foil">${v.no}</span><div class="cv-mid"><span class="cv-seal"><span class="foil">${v.mark}</span></span><span class="cv-title foil">${v.en}</span><span class="cv-sub">EN · KO · JA</span></div><span class="cv-foot">PATENT LEXICON</span></div>`;
 
 /* ── shelf ─────────────────────────────────────── */
@@ -631,6 +691,7 @@ shelf.innerHTML = SHELF.map((v, i) => `<button type="button" class="slot${v.note
     <div class="face topf"></div>
   </div></button>`).join('');
 shelf.style.setProperty('--mid', (SHELF.length - 1) / 2);
+shelf.style.setProperty('--n', SHELF.length);
 
 const stage = $('#shelfStage');
 stage.addEventListener('pointermove', e => {
