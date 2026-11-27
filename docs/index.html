@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="177 patent terms in English, Korean and Japanese, bound in twelve 3D volumes of flashcards.">
+<meta name="description" content="502 patent terms in English, Korean and Japanese, bound in eighteen 3D volumes of flashcards.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%2316181B'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='34' text-anchor='middle' fill='%23CFAE66'%3EP%3C/text%3E%3C/svg%3E">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Patent Lexicon</title>
@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+JP:wght@400;600;700&family=Noto+Serif+KR:wght@400;600;700&display=swap">
 <style>
-/* Layout: a spot-lit gallery shelf of cloth-bound volumes plus a red notebook, a museum plaque under it, then notes.
+/* Layout: a spot-lit gallery with two shelves (law & practice, technical fields) and a red notebook, a museum plaque under it, then notes.
    Study view: the chosen volume lies open on the left (index page), the card deck stands on the right. */
 :root{
   --bg:#DFE0DB; --bg-2:#D1D2CC; --fg:#16181B; --muted:#5A5E64; --line:rgba(22,24,27,.14);
@@ -81,11 +81,13 @@ h1{font-family:var(--f-disp);font-weight:500;font-size:clamp(42px,6.2vw,84px);li
 .btn-solid{background:var(--fg);color:var(--bg);border-color:var(--fg)} .btn-solid:hover{border-color:var(--fg);opacity:.92}
 
 /* ── shelf ─────────────────────────────────────── */
-.shelf-stage{position:relative}
+.shelf-stage{position:relative;--n:11;--mx:0;--my:0}
 .shelf-stage::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 46% 62% at 50% 62%,var(--spot),transparent 72%);pointer-events:none}
 .shelf-scroll{position:relative;scrollbar-width:none}
+.shelf-label{position:relative;z-index:2;margin:0 0 -30px;padding-top:10px;text-align:center;font:500 11px/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.shelf-row+.shelf-row{margin-top:-8px}
 .shelf-scroll::-webkit-scrollbar{display:none}
-.shelf{--n:10;--bw:clamp(124px,calc((min(100vw,1240px) - 64px) / (var(--n) * .62 + .5)),190px);--bh:calc(var(--bw)*1.45);--bd:calc(var(--bw)*.27);--slot:calc(var(--bw)*.62);--mid:4;--mx:0;--my:0;
+.shelf{--bw:clamp(124px,calc((min(100vw,1240px) - 64px) / (var(--n) * .62 + .5)),190px);--bh:calc(var(--bw)*1.45);--bd:calc(var(--bw)*.27);--slot:calc(var(--bw)*.62);--mid:4;
   position:relative;display:flex;justify-content:center;align-items:flex-end;width:max-content;min-width:100%;padding-block:64px 44px;margin:0 auto}
 .shelf::after{content:"";position:absolute;left:0;right:0;bottom:44px;height:1px;background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
 .slot{position:relative;z-index:1;flex:none;width:var(--slot);height:calc(var(--bh) + 26px);display:flex;align-items:flex-end;justify-content:center;
@@ -304,7 +306,8 @@ h1{font-family:var(--f-disp);font-weight:500;font-size:clamp(42px,6.2vw,84px);li
   .ob-back,.ob-edge,.ob-cover{display:none}
   .ob-page{position:static;overflow:visible;border-radius:12px;padding:20px 18px;box-shadow:0 20px 40px -24px var(--shadow)}
 }
-@media (max-width:1100px){
+@media (max-width:1000px){
+  .shelf-label{text-align:left}
   .shelf-scroll{overflow-x:auto;scroll-snap-type:x proximity;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
   .shelf{--bw:136px;justify-content:flex-start;padding-inline:max(16px,env(safe-area-inset-left,0px))}
   .slot{scroll-snap-align:center}
@@ -333,22 +336,21 @@ h1{font-family:var(--f-disp);font-weight:500;font-size:clamp(42px,6.2vw,84px);li
 
   <section class="intro">
     <div>
-      <p class="eyebrow">Patent Lexicon · EN / KO / JA · <span id="volCount">12</span> volumes</p>
+      <p class="eyebrow">Patent Lexicon · EN / KO / JA · <span id="volCount">18</span> volumes</p>
       <h1>One term,<br><em>three languages.</em></h1>
       <p class="triplet" id="triplet"><span class="en">Notice of reasons for refusal</span><span class="sl">/</span><span class="ko" lang="ko">거절이유통지</span><span class="sl">/</span><span class="ja" lang="ja">拒絶理由通知</span></p>
     </div>
     <div>
-      <p class="lede"><b id="termCount">177</b> patent terms in English, Korean and Japanese, from filing and examiner calls to trials, PCT and semiconductor specifications. Pick a volume, open it, and work through the cards.</p>
+      <p class="lede"><b id="termCount">502</b> patent terms in English, Korean and Japanese: law and practice from filing to trials, plus seven technical fields from semiconductors to chemistry. Pick a volume, open it, and work through the cards.</p>
       <div class="intro-acts">
         <button type="button" class="btn btn-solid" id="allBtn">Review all, shuffled</button>
-        <span class="stat">Known <b id="knownAll">0</b> / <span id="termCount2">177</span> · Mistakes <b id="wrongAll">0</b></span>
+        <span class="stat">Known <b id="knownAll">0</b> / <span id="termCount2">502</span> · Mistakes <b id="wrongAll">0</b></span>
       </div>
     </div>
   </section>
 
   <section class="shelf-stage" id="shelfStage" aria-label="Bookshelf">
-    <div class="shelf-scroll"><div class="shelf" id="shelf"></div></div>
-  </section>
+      </section>
 
   <section class="plaque" id="plaque"></section>
 
@@ -422,7 +424,7 @@ h1{font-family:var(--f-disp);font-weight:500;font-size:clamp(42px,6.2vw,84px);li
 <script>
 // [한국어, English, 日本語, よみ, 실무 메모?, 조문?]
 const VOLS = [
-{no:'I', ja:'出願', ko:'출원', en:'Filing', mark:'F', c:'#1F2D4A', foil:'gold',
+{ja:'出願', ko:'출원', en:'Filing', mark:'F', c:'#1F2D4A', foil:'gold',
  desc:'From the day you file to publication and the request for examination. Every deadline starts here.', t:[
  ['출원','Application','出願','しゅつがん','‘출원하다’는 出願する, 영어로는 file an application.'],
  ['출원인','Applicant','出願人','しゅつがんにん'],
@@ -439,8 +441,20 @@ const VOLS = [
  ['공지예외주장','Grace period (exception to lack of novelty)','新規性喪失の例外','しんきせいそうしつのれいがい','공개일부터 한국 12개월, 일본 1년 안에 출원해야 한다.','특허법 30조 · 特許法 30条'],
  ['대리인','Representative','代理人','だいりにん'],
  ['변리사','Patent attorney','弁理士','べんりし','미국은 patent attorney(변호사)와 patent agent를 구분한다.'],
+ ['특허출원서','Request (application form)','願書','がんしょ','일본 출원서 첫머리는 【書類名】特許願.','특허법 42조 1항 · 特許法 36条1項'],
+ ['출원번호통지서','Filing receipt','受領書','じゅりょうしょ','일본은 전자출원 직후 受領書에 출원번호가 찍혀 나온다.'],
+ ['외국어특허출원','Foreign-language application','外国語書面出願','がいこくごしょめんしゅつがん','외국어 명세서로 출원하고 번역문은 나중에 낸다. 기한은 우선일부터 한국 1년 2개월, 일본 1년 4개월.','특허법 42조의3 · 特許法 36条の2'],
+ ['실용신안','Utility model','実用新案','じつようしんあん','일본은 무심사 등록, 한국은 심사 후 등록. 존속기간은 두 나라 모두 출원일부터 10년.'],
+ ['출원 취하','Withdrawal of application','出願の取下げ','しゅつがんのとりさげ','취하하면 선원의 지위도 사라진다. 포기(放棄)와 구별해서 쓴다.'],
+ ['취하간주','Deemed withdrawal','みなし取下げ','みなしとりさげ','심사청구 기한을 넘기면 출원은 취하된 것으로 본다.'],
+ ['보정명령','Invitation to correct','補正指令','ほせいしれい','방식에 흠이 있으면 특허청장이 보정을 명한다. 응하지 않으면 절차가 무효로 될 수 있다.','특허법 46조 · 特許法 17条3項'],
+ ['방식심사','Formality examination','方式審査','ほうしきしんさ','내용이 아니라 서식·수수료 같은 형식을 보는 심사.'],
+ ['출원료','Filing fee','出願料','しゅつがんりょう'],
+ ['서지사항','Bibliographic data','書誌事項','しょしじこう','출원인·발명자·우선권 같은 표지 정보.'],
+ ['출원인 명의변경','Change of applicant','出願人名義変更','しゅつがんにんめいぎへんこう','출원 중 권리 양도는 신고해야 효력이 생긴다.','특허법 38조 4항 · 特許法 34条4項'],
+ ['조기공개','Early publication','出願公開の請求','しゅつがんこうかいのせいきゅう','1년 6개월을 기다리지 않고 먼저 공개해 달라는 신청. 보상금청구권을 일찍 확보할 때 쓴다.','특허법 64조 1항 · 特許法 64条の2'],
 ]},
-{no:'II', ja:'明細書', ko:'명세서', en:'Specification', mark:'S', c:'#1D3B32', foil:'gold',
+{ja:'明細書', ko:'명세서', en:'Specification', mark:'S', c:'#1D3B32', foil:'gold',
  desc:'The document that puts an invention into words. Korean and Japanese section headings map almost one to one.', t:[
  ['명세서','Specification','明細書','めいさいしょ','일본은 特許請求の範囲를 明細書와 별개 서류로 낸다. 한국 명세서는 발명의 설명과 청구범위로 이뤄진다.'],
  ['발명의 설명','Description','発明の詳細な説明','はつめいのしょうさいなせつめい','한국도 2014년 개정 전에는 ‘발명의 상세한 설명’이었다.','특허법 42조 3항 · 特許法 36条4項'],
@@ -457,8 +471,20 @@ const VOLS = [
  ['요약서','Abstract','要約書','ようやくしょ','권리범위를 정할 때 요약서는 고려하지 않는다.','특허법 43조 · 特許法 70条3項'],
  ['도면','Drawings','図面','ずめん'],
  ['단락 번호','Paragraph number','段落番号','だんらくばんごう','한국은 [0001], 일본은 【0001】. 이 카드 왼쪽 위 번호도 같은 형식이다.'],
+ ['발명의 명칭','Title of invention','発明の名称','はつめいのめいしょう'],
+ ['대표도','Representative drawing','代表図','だいひょうず','공보 첫 면에 요약서와 함께 실린다. 일본 요약서에는 【選択図】로 적는다.'],
+ ['특허문헌','Patent literature','特許文献','とっきょぶんけん','선행기술문헌은 특허문헌과 비특허문헌으로 나눠 적는다.'],
+ ['비특허문헌','Non-patent literature','非特許文献','ひとっきょぶんけん'],
+ ['비교예','Comparative example','比較例','ひかくれい','실시예와 나란히 두어 효과를 보여 준다. 수치한정발명에선 사실상 필수.'],
+ ['변형예','Modification','変形例','へんけいれい','“이하 변형예를 설명한다”는 「以下、変形例について説明する。」'],
+ ['서열목록','Sequence listing','配列表','はいれつひょう','염기·아미노산 서열은 WIPO ST.26 형식 XML로 낸다.'],
+ ['기술적 사상','Technical idea','技術的思想','ぎじゅつてきしそう','명세서 끝 관용구 “본 발명의 기술적 사상을 벗어나지 않는 범위에서”는 「本発明の趣旨を逸脱しない範囲で」.'],
+ ['일 실시예에 따르면','According to an embodiment','一実施形態によれば','いちじっしけいたいによれば','한국 명세서의 단골 문장 머리. 영어로는 In some embodiments.'],
+ ['바람직하게는','Preferably','好ましくは','このましくは','바람직한 범위를 단계적으로 적어 두면 나중에 보정 근거가 된다.'],
+ ['~에 한정되지 않는다','is not limited to','〜に限定されない','〜にげんていされない','실시예가 권리범위를 좁히지 않는다는 점을 밝히는 문장.'],
+ ['도시하다','illustrate · shown in','図示する','ずしする','“도 2에 도시된 바와 같이”는 「図2に示すように」.'],
 ]},
-{no:'III', ja:'請求項', ko:'청구항', en:'Claims', mark:'C', c:'#5B1F25', foil:'gold',
+{ja:'請求項', ko:'청구항', en:'Claims', mark:'C', c:'#5B1F25', foil:'gold',
  desc:'The sentences that draw the boundary of a right, down to Japanese claim phrases like 前記 and 備える.', t:[
  ['청구범위','Claims','特許請求の範囲','とっきょせいきゅうのはんい','','특허법 42조 4항 · 特許法 36条5項'],
  ['청구항','Claim','請求項','せいきゅうこう','일본 서식은 【請求項1】처럼 쓴다.'],
@@ -476,8 +502,23 @@ const VOLS = [
  ['~로 이루어진 군에서 선택되는','selected from the group consisting of','〜からなる群から選択される','〜からなるぐんからせんたくされる','마쿠시(Markush) 형식 청구항의 관용구.'],
  ['단계','step','工程・ステップ','こうてい・ステップ','제조방법은 工程, 정보처리 방법은 ステップ를 많이 쓴다.'],
  ['~부','unit','〜部','〜ぶ','제어부는 制御部(せいぎょぶ), 수단은 手段(しゅだん).'],
+ ['전제부','Preamble','前提部','ぜんていぶ','“~에 있어서” 앞부분. 공지 부분으로 읽힐 수 있어 무엇을 넣을지 신중히 정한다.'],
+ ['특징부','Characterizing portion','特徴部','とくちょうぶ'],
+ ['젭슨 청구항','Jepson claim','ジェプソン型クレーム','ジェプソンがたクレーム','“~에 있어서, ~를 특징으로 하는” 형식. 전제부가 자인한 선행기술로 취급될 수 있다.'],
+ ['물건 청구항','Product claim','物の発明の請求項','もののはつめいのせいきゅうこう','발명은 물건의 발명과 방법의 발명(물건을 생산하는 방법 포함)으로 나뉜다.','특허법 2조 3호 · 特許法 2条3項'],
+ ['방법 청구항','Method claim','方法の発明の請求項','ほうほうのはつめいのせいきゅうこう'],
+ ['기능식 청구항','Functional claim','機能的クレーム','きのうてきクレーム','구조 대신 기능으로 한정한 청구항. 미국은 means-plus-function으로 따로 해석한다.'],
+ ['~하도록 구성된','configured to','〜するように構成された','〜するようにこうせいされた','기능적 표현의 대표 형태.'],
+ ['~와 연결된','connected to','〜に接続された','〜にせつぞくされた','전기적 연결은 電気的に接続された, 맞닿아 있으면 接する.'],
+ ['~ 상에','on','〜上に','〜うえに','“~ 위에”가 바로 위만 뜻하는지 사이에 다른 층이 있어도 되는지 명세서에 적어 둔다.'],
+ ['인접하는','adjacent to','隣接する','りんせつする'],
+ ['대향하는','facing · opposite to','対向する','たいこうする','반도체·디스플레이 명세서에 자주 나온다.'],
+ ['각각','respectively','それぞれ','それぞれ'],
+ ['및/또는','and/or','及び/又は','および/または','청구항에서는 범위가 모호해진다며 피하라는 의견도 있다.'],
+ ['청구항 수','Number of claims','請求項の数','せいきゅうこうのかず','심사청구료와 특허료가 청구항 수에 따라 늘어난다.'],
+ ['인용하다','refer to (a claim)','引用する','いんようする','“제1항 또는 제2항에 있어서”는 「請求項1又は2に記載の」.'],
 ]},
-{no:'IV', ja:'審査', ko:'심사', en:'Examination', mark:'E', c:'#8A6B2C', foil:'ink',
+{ja:'審査', ko:'심사', en:'Examination', mark:'E', c:'#8A6B2C', foil:'ink',
  desc:'The papers you trade with the examiner, from the notice of reasons for refusal to the decision to grant.', t:[
  ['심사관','Examiner','審査官','しんさかん'],
  ['거절이유','Reasons for refusal','拒絶理由','きょぜつりゆう','일본·유럽 영문은 refusal, 미국은 rejection을 쓴다.'],
@@ -493,8 +534,20 @@ const VOLS = [
  ['특허결정','Decision to grant a patent','特許査定','とっきょさてい','','특허법 66조 · 特許法 51条'],
  ['설정등록','Registration','設定登録','せっていとうろく','특허료를 내고 설정등록되어야 특허권이 생긴다.','특허법 87조 · 特許法 66条'],
  ['기간연장','Extension of time','期間延長','きかんえんちょう'],
+ ['최초거절이유통지','First notice of reasons for refusal','最初の拒絶理由通知','さいしょのきょぜつりゆうつうち','이 단계에선 신규사항만 아니면 보정을 비교적 자유롭게 할 수 있다.'],
+ ['자진보정','Voluntary amendment','自発補正','じはつほせい','첫 거절이유통지를 받기 전에 스스로 하는 보정.'],
+ ['심사청구료','Examination request fee','審査請求料','しんさせいきゅうりょう','청구항이 많을수록 비싸진다.'],
+ ['특허결정등본','Certified copy of decision to grant','特許査定の謄本','とっきょさていのとうほん','받은 날부터 등록료 납부기한이 시작된다. 한국 3개월, 일본 30일.','특허법 79조 · 特許法 108条'],
+ ['거절결정등본','Certified copy of decision of refusal','拒絶査定の謄本','きょぜつさていのとうほん','불복심판·재심사 청구기간은 이 등본을 받은 날부터 센다.'],
+ ['등록공보','Patent gazette','特許公報','とっきょこうほう','특허취소신청 기간은 등록공보 발행일부터 6개월.'],
+ ['공개공보','Laid-open gazette','公開特許公報','こうかいとっきょこうほう','일본 공개번호는 特開2024-012345처럼 적는다.'],
+ ['특허분류','Patent classification','特許分類','とっきょぶんるい','국제특허분류는 IPC. 한국·미국·유럽은 CPC, 일본은 FI와 F텀을 함께 쓴다.'],
+ ['담당 심사관','Examiner in charge','担当審査官','たんとうしんさかん'],
+ ['1차 심사 통지','First action','一次審査通知','いちじしんさつうち','심사청구부터 첫 통지까지를 FA 기간이라 부른다.'],
+ ['특허결정 후 분할','Division after allowance','特許査定後の分割','とっきょさていごのぶんかつ','특허결정 등본을 받은 뒤에도 설정등록 전이면 분할할 수 있다. 한국 3개월, 일본 30일.','특허법 52조 · 特許法 44条'],
+ ['직권 재심사','Ex officio reexamination','職権再審査','しょっけんさいしんさ','특허결정 뒤 명백한 거절이유를 찾으면 심사관이 결정을 취소하고 다시 심사한다. 한국 제도.','특허법 66조의3'],
 ]},
-{no:'V', ja:'特許要件', ko:'특허요건', en:'Patentability', mark:'P', c:'#234549', foil:'gold',
+{ja:'特許要件', ko:'특허요건', en:'Patentability', mark:'P', c:'#234549', foil:'gold',
  desc:'Novelty, inventive step and the description requirements. The words that come up most in refusals.', t:[
  ['산업상 이용가능성','Industrial applicability','産業上の利用可能性','さんぎょうじょうのりようかのうせい','','특허법 29조 1항 · 特許法 29条1項'],
  ['신규성','Novelty','新規性','しんきせい','','특허법 29조 1항 · 特許法 29条1項'],
@@ -509,8 +562,19 @@ const VOLS = [
  ['명확성 요건','Clarity requirement','明確性要件','めいかくせいようけん','','특허법 42조 4항 2호 · 特許法 36条6項2号'],
  ['기재불비','Deficiency in description','記載不備','きさいふび','실시가능·뒷받침·명확성 위반을 묶어 부르는 실무 용어.'],
  ['발명의 단일성','Unity of invention','発明の単一性','はつめいのたんいつせい','','특허법 45조 · 特許法 37条'],
+ ['발명','Invention','発明','はつめい','자연법칙을 이용한 기술적 사상의 창작으로서 고도한 것.','특허법 2조 1호 · 特許法 2条1項'],
+ ['발명의 성립성','Patent eligibility','発明該当性','はつめいがいとうせい','소프트웨어·영업방법 발명에서 자주 다툰다.'],
+ ['공연 실시','Public working','公然実施','こうぜんじっし'],
+ ['간행물 게재','Description in a publication','刊行物記載','かんこうぶつきさい','인터넷 공개(전기통신회선)도 포함한다.'],
+ ['불특허사유','Unpatentable inventions','不特許事由','ふとっきょじゆう','공서양속이나 공중위생을 해칠 우려가 있는 발명.','특허법 32조 · 特許法 32条'],
+ ['의료행위','Methods of medical treatment','医療行為','いりょうこうい','사람을 수술·치료·진단하는 방법은 산업상 이용가능성이 없다고 본다. 미국과 다른 부분.'],
+ ['실질적 동일','Substantial identity','実質同一','じっしつどういつ','차이가 주지관용기술의 부가·삭제 정도면 같은 발명으로 본다.'],
+ ['파라미터 발명','Parameter invention','パラメータ発明','パラメータはつめい','새로 만든 측정 변수로 한정한 발명. 명확성과 신규성 판단이 까다롭다.'],
+ ['결합발명','Combination invention','組合せ発明','くみあわせはつめい','구성들이 유기적으로 결합해 새 효과를 내야 한다. 단순한 모음은 寄せ集め.'],
+ ['미완성 발명','Incomplete invention','未完成発明','みかんせいはつめい'],
+ ['출원 전','Before filing','出願前','しゅつがんまえ','기준은 출원일이 아니라 출원 “전”. 같은 날 먼저 공개된 것도 문제가 될 수 있다.'],
 ]},
-{no:'VI', ja:'審判', ko:'심판·소송', en:'Trials', mark:'T', c:'#3C2444', foil:'gold',
+{ja:'審判', ko:'심판·소송', en:'Trials', mark:'T', c:'#3C2444', foil:'gold',
  desc:'Appeals and disputes over a granted right. Korean and Japanese procedure part ways here more than anywhere.', t:[
  ['특허심판원','Intellectual Property Trial and Appeal Board','審判部','しんぱんぶ','일본은 특허청 안의 審判部가 심판을 맡는다.'],
  ['거절결정불복심판','Appeal against decision of refusal','拒絶査定不服審判','きょぜつさていふふくしんぱん','청구기간은 한국·일본 모두 결정등본을 받은 날부터 3개월.','특허법 132조의17 · 特許法 121条'],
@@ -522,8 +586,22 @@ const VOLS = [
  ['특허취소신청','Post-grant opposition','特許異議の申立て','とっきょいぎのもうしたて','한국은 2017년 도입. 두 나라 모두 등록공보 발행 후 6개월 안에 낸다.','특허법 132조의2 · 特許法 113条'],
  ['심결','Trial decision','審決','しんけつ'],
  ['심결취소소송','Action against a trial decision','審決取消訴訟','しんけつとりけしそしょう','한국은 특허법원, 일본은 지적재산고등재판소(知財高裁)가 맡는다.','특허법 186조 · 特許法 178条'],
+ ['심판청구서','Request for trial','審判請求書','しんぱんせいきゅうしょ'],
+ ['청구인','Demandant','請求人','せいきゅうにん'],
+ ['피청구인','Demandee','被請求人','ひせいきゅうにん'],
+ ['심판장','Chief administrative judge','審判長','しんぱんちょう'],
+ ['심판관','Administrative patent judge','審判官','しんぱんかん','3명 또는 5명의 합의체로 심리한다.'],
+ ['구술심리','Oral proceedings','口頭審理','こうとうしんり','일본 무효심판은 원칙적으로 구술심리로 한다.','特許法 145条'],
+ ['답변서','Written reply','答弁書','とうべんしょ'],
+ ['일사부재리','Ne bis in idem','一事不再理','いちじふさいり','확정 심결과 같은 사실·증거로 다시 심판할 수 없다. 일본은 2011년부터 당사자·참가인에게만 미친다.','특허법 163조 · 特許法 167条'],
+ ['심결 확정','Finality of trial decision','審決の確定','しんけつのかくてい'],
+ ['대법원','Supreme Court','最高裁判所','さいこうさいばんしょ'],
+ ['재심','Retrial','再審','さいしん','','특허법 178조 · 特許法 171条'],
+ ['참가','Intervention','参加','さんか','','특허법 155조 · 特許法 148条'],
+ ['직권심리','Ex officio examination','職権審理','しょっけんしんり','당사자가 주장하지 않은 이유도 심리할 수 있다.','특허법 159조 · 特許法 153条'],
+ ['증거조사','Examination of evidence','証拠調べ','しょうこしらべ'],
 ]},
-{no:'VII', ja:'権利', ko:'권리·침해', en:'Rights', mark:'R', c:'#3E4426', foil:'gold',
+{ja:'権利', ko:'권리·침해', en:'Rights', mark:'R', c:'#3E4426', foil:'gold',
  desc:'Life after registration: licenses, infringement, injunctions and damages.', t:[
  ['특허권','Patent right','特許権','とっきょけん'],
  ['특허권자','Patentee','特許権者','とっきょけんじゃ'],
@@ -540,9 +618,27 @@ const VOLS = [
  ['선사용권','Prior user right','先使用権','せんしようけん','일본 법문은 「先使用による通常実施権」.','특허법 103조 · 特許法 79条'],
  ['직무발명','Employee invention','職務発明','しょくむはつめい','한국은 발명진흥법, 일본은 특허법 35조에 둔다.','발명진흥법 2조 · 特許法 35条'],
  ['권리소진','Patent exhaustion','消尽','しょうじん'],
+ ['존속기간 연장','Patent term extension','存続期間の延長','そんぞくきかんのえんちょう','의약 허가로 실시하지 못한 기간이나 등록 지연 기간만큼 늘려 준다.','특허법 89조·92조의2 · 特許法 67条'],
+ ['보호범위','Technical scope','技術的範囲','ぎじゅつてきはんい','보호범위는 청구범위에 적힌 사항으로 정한다.','특허법 97조 · 特許法 70条'],
+ ['문언침해','Literal infringement','文言侵害','もんごんしんがい'],
+ ['구성요소 완비의 원칙','All-elements rule','オールエレメントルール','オールエレメントルール','청구항의 구성요소를 모두 실시해야 침해. 하나라도 빠지면 문언침해가 아니다.'],
+ ['경고장','Warning letter','警告書','けいこくしょ','받으면 먼저 상대 특허의 유효성과 침해 여부를 감정한다.'],
+ ['보상금청구권','Right to compensation','補償金請求権','ほしょうきんせいきゅうけん','공개 후 경고를 받고도 실시한 자에게 등록 후 청구한다.','특허법 65조 · 特許法 65条'],
+ ['실시료','Royalty','実施料','じっしりょう','일본 실무에선 ロイヤルティ라고도 한다.'],
+ ['라이선스 계약','License agreement','ライセンス契約','ライセンスけいやく'],
+ ['특허권 이전','Transfer of patent right','特許権の移転','とっきょけんのいてん','등록해야 효력이 생긴다.','특허법 101조 · 特許法 98条'],
+ ['공유','Co-ownership','共有','きょうゆう','공유자는 다른 공유자 동의 없이 지분을 양도하거나 실시권을 줄 수 없다.','특허법 99조 · 特許法 73条'],
+ ['질권','Pledge','質権','しちけん'],
+ ['특허표시','Patent marking','特許表示','とっきょひょうじ'],
+ ['허위표시','False marking','虚偽表示','きょぎひょうじ'],
+ ['과실의 추정','Presumption of negligence','過失の推定','かしつのすいてい','특허권 침해자는 과실이 있는 것으로 추정한다.','특허법 130조 · 特許法 103条'],
+ ['생산방법의 추정','Presumption of production by a patented process','生産方法の推定','せいさんほうほうのすいてい','','특허법 129조 · 特許法 104条'],
+ ['징벌적 손해배상','Enhanced damages','懲罰的損害賠償','ちょうばつてきそんがいばいしょう','한국은 고의 침해에 손해액의 5배까지 배상하게 한다. 일본에는 없는 제도.'],
+ ['권리남용의 항변','Invalidity defense','権利行使制限の抗弁','けんりこうしせいげんのこうべん','특허가 무효로 될 것이 명백하면 침해소송에서 권리를 행사할 수 없다.','特許法 104条の3'],
+ ['자유실시기술 항변','Prior-art defense','公知技術の抗弁','こうちぎじゅつのこうべん','실시하는 기술이 공지기술과 같거나 쉽게 도출되면 침해가 아니라는 항변.'],
 ]},
-{no:'VIII', ja:'国際出願', ko:'국제출원', en:'PCT', mark:'P', c:'#D5CEBB', foil:'ink',
- desc:'One filing, many countries. The documents and deadlines of each PCT stage.', t:[
+{ja:'国際出願', ko:'국제출원', en:'International', mark:'P', c:'#D5CEBB', foil:'ink',
+ desc:'One filing, many countries: each PCT stage, the PPH, and the foreign systems you deal with.', t:[
  ['특허협력조약','Patent Cooperation Treaty (PCT)','特許協力条約','とっきょきょうりょくじょうやく'],
  ['파리조약','Paris Convention','パリ条約','パリじょうやく','우선기간은 특허·실용신안 12개월, 디자인·상표 6개월.'],
  ['국제출원','International application','国際出願','こくさいしゅつがん'],
@@ -556,9 +652,22 @@ const VOLS = [
  ['지정국','Designated State','指定国','していこく'],
  ['국내단계 진입','National phase entry','国内移行','こくないいこう','기한은 우선일부터 한국 31개월, 일본 30개월.','특허법 201조 · 特許法 184条の4'],
  ['번역문','Translation','翻訳文','ほんやくぶん'],
+ ['국제출원일','International filing date','国際出願日','こくさいしゅつがんび'],
+ ['국제사무국','International Bureau (IB)','国際事務局','こくさいじむきょく','WIPO 국제사무국. 국제공개를 맡는다.'],
+ ['국제예비심사기관','International Preliminary Examining Authority (IPEA)','国際予備審査機関','こくさいよびしんさきかん'],
+ ['국제예비보고서','International preliminary report on patentability (IPRP)','特許性に関する国際予備報告','とっきょせいにかんするこくさいよびほうこく','1장은 견해서를 바탕으로, 2장은 국제예비심사 결과로 만든다.'],
+ ['34조 보정','Article 34 amendment','34条補正','さんじゅうよんじょうほせい','국제예비심사 단계에서 명세서·청구범위·도면을 고친다.'],
+ ['선택국','Elected State','選択国','せんたくこく'],
+ ['보충국제조사','Supplementary international search (SIS)','補充国際調査','ほじゅうこくさいちょうさ'],
+ ['특허심사하이웨이','Patent Prosecution Highway (PPH)','特許審査ハイウェイ','とっきょしんさハイウェイ','먼저 특허 가능 판단을 받은 결과를 근거로 다른 나라에서 빨리 심사받는다.'],
+ ['유럽특허','European patent','欧州特許','おうしゅうとっきょ'],
+ ['단일특허','Unitary patent','単一効特許','たんいつこうとっきょ','2023년 6월 통합특허법원(UPC)과 함께 시작했다.'],
+ ['계속출원','Continuation application','継続出願','けいぞくしゅつがん','미국 제도. 부분계속출원(CIP)은 一部継続出願.'],
+ ['정보개시의무','Duty of disclosure (IDS)','情報開示義務','じょうほうかいじぎむ','미국은 알고 있는 선행기술을 IDS로 내야 한다. 한·일 대리인이 자주 챙기는 일.'],
+ ['우선권 회복','Restoration of the right of priority','優先権の回復','ゆうせんけんのかいふく','12개월을 넘겨도 2개월 안이면 회복을 청구할 수 있다.'],
 ]},
-{no:'IX', ja:'半導体', ko:'반도체', en:'Semiconductors', mark:'S', c:'#1B1D21', foil:'silver',
- desc:'Technical terms from every semiconductor specification. Watch the Japanese katakana spellings.', t:[
+{ja:'半導体', ko:'반도체', en:'Semiconductors', mark:'S', c:'#1B1D21', foil:'silver',
+ desc:'Device structures, from transistors and memory cells to packaging. Watch the Japanese katakana spellings.', t:[
  ['반도체 장치','Semiconductor device','半導体装置','はんどうたいそうち'],
  ['기판','Substrate','基板','きばん'],
  ['웨이퍼','Wafer','ウエハ','ウエハ','특허 문서에서는 장음 없이 ウエハ가 흔하다.'],
@@ -574,8 +683,34 @@ const VOLS = [
  ['관통 전극','Through electrode (TSV)','貫通電極','かんつうでんきょく'],
  ['적층','Stacking','積層','せきそう'],
  ['단면도','Cross-sectional view','断面図','だんめんず','평면도는 平面図(へいめんず).'],
+ ['트랜지스터','Transistor','トランジスタ','トランジスタ'],
+ ['게이트 전극','Gate electrode','ゲート電極','ゲートでんきょく'],
+ ['소스 영역','Source region','ソース領域','ソースりょういき'],
+ ['드레인 영역','Drain region','ドレイン領域','ドレインりょういき'],
+ ['스페이서','Spacer','スペーサ','スペーサ','특허 문서는 장음을 빼고 スペーサ로 쓰는 경우가 많다.'],
+ ['핀펫','Fin field-effect transistor (FinFET)','フィン型トランジスタ','フィンがたトランジスタ'],
+ ['게이트 올 어라운드','Gate-all-around (GAA)','ゲートオールアラウンド','ゲートオールアラウンド','나노시트 채널을 게이트가 사방에서 감싸는 구조.'],
+ ['메모리 셀','Memory cell','メモリセル','メモリセル'],
+ ['커패시터','Capacitor','キャパシタ','キャパシタ','일본 특허에선 容量素子(ようりょうそし)라고도 쓴다.'],
+ ['워드 라인','Word line','ワード線','ワードせん'],
+ ['비트 라인','Bit line','ビット線','ビットせん'],
+ ['플로팅 게이트','Floating gate','浮遊ゲート','ふゆうゲート','낸드 플래시의 전하 저장층. 전하 트랩형은 電荷蓄積層.'],
+ ['수직 채널','Vertical channel','垂直チャネル','すいちょくチャネル','3D 낸드는 수직 채널 둘레에 워드 라인을 층층이 쌓는다.'],
+ ['반도체 칩','Semiconductor chip','半導体チップ','はんどうたいチップ'],
+ ['반도체 패키지','Semiconductor package','半導体パッケージ','はんどうたいパッケージ'],
+ ['범프','Bump','バンプ','バンプ'],
+ ['재배선층','Redistribution layer (RDL)','再配線層','さいはいせんそう'],
+ ['인터포저','Interposer','インターポーザ','インターポーザ'],
+ ['봉지재','Encapsulant','封止材','ふうしざい','몰딩 수지는 封止樹脂.'],
+ ['본딩 와이어','Bonding wire','ボンディングワイヤ','ボンディングワイヤ'],
+ ['고유전율 절연막','High-k dielectric film','高誘電率絶縁膜','こうゆうでんりつぜつえんまく'],
+ ['실리사이드','Silicide','シリサイド','シリサイド'],
+ ['콘택 플러그','Contact plug','コンタクトプラグ','コンタクトプラグ'],
+ ['비아','Via','ビア','ビア'],
+ ['전력 반도체','Power semiconductor','パワー半導体','パワーはんどうたい','SiC·GaN 소자가 대표적.'],
+ ['이미지 센서','Image sensor','イメージセンサ','イメージセンサ'],
 ]},
-{no:'X', ja:'実務', ko:'사무소 실무', en:'Practice', mark:'P', c:'#4B3A2A', foil:'gold',
+{ja:'実務', ko:'사무소 실무', en:'Practice', mark:'P', c:'#4B3A2A', foil:'gold',
  desc:'The everyday words of a patent office: deadlines, powers of attorney, foreign associates and searches.', t:[
  ['중간사건','Prosecution (office action work)','中間処理','ちゅうかんしょり','출원과 등록 사이, 거절이유에 대응하는 일을 통틀어 부른다. 영어권에선 OA 대응.'],
  ['기한관리','Docketing','期限管理','きげんかんり','사무소마다 기한 담당자를 두고 이중으로 확인한다. 기한 하나 놓치면 권리가 날아간다.'],
@@ -594,8 +729,23 @@ const VOLS = [
  ['침해예방조사','Freedom-to-operate (FTO) search','侵害予防調査','しんがいよぼうちょうさ','제품을 내기 전에 남의 특허를 밟는지 확인한다. 실무에선 FTO라는 말을 더 많이 쓴다.'],
  ['직무발명신고서','Invention disclosure form','発明届出書','はつめいとどけでしょ','명세서 작업은 이 서류와 발명자 미팅에서 시작한다.'],
  ['출원번호','Application number','出願番号','しゅつがんばんごう','한국은 10-2024-0012345(10이 특허), 일본은 特願2024-012345. 통화하면 이 번호부터 묻는다.'],
+ ['명세서 초안','Draft specification','明細書案','めいさいしょあん'],
+ ['발명자 미팅','Inventor interview','発明者面談','はつめいしゃめんだん','발명의 핵심과 변형예를 끌어내는 자리. 명세서의 질이 여기서 갈린다.'],
+ ['출원 지시','Filing instructions','出願指示','しゅつがんしじ','해외 대리인에게 보내는 지시. 기한·청구항·우선권 정보를 빠짐없이 적는다.'],
+ ['보고서','Reporting letter','報告書','ほうこくしょ','거절이유통지가 오면 내용과 대응 방향을 정리해 고객에게 보고한다.'],
+ ['청구서','Invoice','請求書','せいきゅうしょ','돈을 청구하는 문서. 심판청구서·심사청구서와 헷갈리지 말 것.'],
+ ['연차료 관리','Annuity management','年金管理','ねんきんかんり','등록 후 해마다 내는 특허료를 대신 챙기는 일.'],
+ ['특허 포트폴리오','Patent portfolio','特許ポートフォリオ','とっきょポートフォリオ'],
+ ['회피설계','Design-around','回避設計','かいひせっけい','상대 특허의 구성요소 하나를 빼거나 바꿔 침해를 피한다.'],
+ ['클레임 차트','Claim chart','クレームチャート','クレームチャート','구성요소별로 상대 제품을 대응시킨 표. 침해·무효 분석의 기본.'],
+ ['특허맵','Patent map','特許マップ','とっきょマップ','기술 분야별 출원 동향을 한눈에 그린 분석.'],
+ ['수수료 감면','Fee reduction','料金減免','りょうきんげんめん','중소기업·개인·대학은 심사청구료와 특허료를 감면받는다.'],
+ ['전자출원','Electronic filing','電子出願','でんししゅつがん','한국은 특허로, 일본은 インターネット出願ソフト로 낸다.'],
+ ['기술이전','Technology transfer','技術移転','ぎじゅついてん'],
+ ['특허 가치평가','Patent valuation','特許の価値評価','とっきょのかちひょうか'],
+ ['비밀유지계약','Non-disclosure agreement (NDA)','秘密保持契約','ひみつほじけいやく','출원 전 외부에 발명을 보여 줄 때 먼저 맺는다.'],
 ]},
-{no:'XI', ja:'面接・応対', ko:'심사관 협의', en:'Interviews', mark:'I', c:'#4E5A63', foil:'silver',
+{ja:'面接・応対', ko:'심사관 협의', en:'Interviews', mark:'I', c:'#4E5A63', foil:'silver',
  desc:'What you say when the examiner calls: draft amendments, allowable claims and the limits on amending.', t:[
  ['화상면담','Online interview','オンライン面接','オンラインめんせつ','일본은 심사청구부터 특허사정 송달(또는 전치심사 종료)까지 면담을 받는다.'],
  ['면담기록','Interview record','面接記録','めんせつきろく','합의한 내용이 출원경과에 남는다. 면담에서 한 말도 금반언의 근거가 될 수 있다.'],
@@ -613,8 +763,12 @@ const VOLS = [
  ['재심사청구','Request for reexamination','再審査の請求','さいしんさのせいきゅう','거절결정 뒤 보정과 함께 내면 거절결정이 취소된 것으로 보고 다시 심사한다. 일본에선 前置審査가 비슷한 역할.','특허법 67조의2'],
  ['정보제공','Third-party submission','情報提供','じょうほうていきょう','누구나 심사 중인 출원에 선행기술을 낼 수 있다. 경쟁사 출원을 견제할 때 쓴다.','특허법 63조의2 · 特許法施行規則 13条の2'],
  ['착수 예정 시기','Expected start of examination','着手見通し時期','ちゃくしゅみとおしじき','“언제 심사가 시작되나요?”의 답. 일본 특허청은 着手見通し時期照会로 알려 준다.'],
+ ['청구항 삭제','Deletion of claims','請求項の削除','せいきゅうこうのさくじょ','최후거절이유통지 뒤에도 허용되는 가장 안전한 보정.','특허법 47조 3항 1호 · 特許法 17条の2第5項1号'],
+ ['응답기한','Response deadline','応答期限','おうとうきげん','의견서 제출기간의 마지막 날. 연장 신청도 이날 전에 해야 한다.'],
+ ['면담 신청','Interview request','面接の依頼','めんせつのいらい','일본은 웹 양식·전화·메일로 신청할 수 있다.'],
+ ['상신서','Informal written statement','上申書','じょうしんしょ','법정 서식 밖의 사정을 심사관에게 알리는 서면. 일본 실무에서 자주 쓴다.'],
 ]},
-{no:'XII', ja:'進歩性の論理', ko:'진보성 대응', en:'Arguments', mark:'A', c:'#2C2A4A', foil:'gold',
+{ja:'進歩性の論理', ko:'진보성 대응', en:'Arguments', mark:'A', c:'#2C2A4A', foil:'gold',
  desc:'How an inventive-step rejection is built, and the words you use to take it apart.', t:[
  ['인용발명','Cited invention','引用発明','いんようはつめい','거절이유에 쓰인 문헌(인용문헌)에 적힌 발명.'],
  ['주인용발명','Primary reference','主引用発明','しゅいんようはつめい','청구항과 가장 가까운 인용발명. 여기서 차이점을 뽑는다.'],
@@ -634,6 +788,197 @@ const VOLS = [
  ['선택발명','Selection invention','選択発明','せんたくはつめい','상위개념으로 공지된 것 중 일부를 골라낸 발명. 고른 범위에서만 나는 현저한 효과가 필요하다.'],
  ['제조방법이 기재된 물건 청구항','Product-by-process claim','プロダクト・バイ・プロセス・クレーム','プロダクト・バイ・プロセス・クレーム','일본은 2015년 최고재판소 판결 뒤 명확성 요건이 엄해졌다. 줄여서 PBP 클레임.'],
  ['상업적 성공','Commercial success','商業的成功','しょうぎょうてきせいこう','진보성을 뒷받침하는 보조 사정. 그 성공이 발명의 기술적 특징에서 나왔다는 것까지 보여야 한다.'],
+ ['과제의 공통성','Common problem','課題の共通性','かだいのきょうつうせい','결합의 동기를 인정하는 근거 중 하나.'],
+ ['기술분야의 관련성','Relevance of technical fields','技術分野の関連性','ぎじゅつぶんやのかんれんせい'],
+ ['작용·기능의 공통성','Common operation or function','作用・機能の共通性','さよう・きのうのきょうつうせい'],
+ ['인용발명 속 시사','Suggestion in the cited invention','引用発明の内容中の示唆','いんようはつめいのないようちゅうのしさ'],
+ ['균등물 치환','Substitution of equivalents','均等物による置換','きんとうぶつによるちかん'],
+ ['수치범위의 최적화','Optimization of numerical ranges','数値範囲の最適化','すうちはんいのさいてきか'],
+ ['이질적 효과','Effect of a different kind','異質な効果','いしつなこうか','현저한 효과는 이질적 효과이거나, 동질이지만 양적으로 두드러진 효과여야 한다.'],
+ ['비교실험','Comparative experiment','比較実験','ひかくじっけん'],
+]},
+{ja:'製造プロセス', ko:'공정·장비', en:'Fabrication', mark:'F', c:'#30343A', foil:'silver',
+ desc:'Process and equipment words, from lithography, etching and deposition to yield.', t:[
+ ['포토리소그래피','Photolithography','フォトリソグラフィ','フォトリソグラフィ'],
+ ['포토레지스트','Photoresist','フォトレジスト','フォトレジスト','일본 특허는 그냥 レジスト라고도 쓴다.'],
+ ['노광','Exposure','露光','ろこう','EUV 노광은 極端紫外線(きょくたんしがいせん)露光.'],
+ ['현상','Development','現像','げんぞう'],
+ ['포토마스크','Photomask (reticle)','フォトマスク','フォトマスク'],
+ ['건식 식각','Dry etching','ドライエッチング','ドライエッチング'],
+ ['습식 식각','Wet etching','ウェットエッチング','ウェットエッチング'],
+ ['식각 선택비','Etch selectivity','エッチング選択比','エッチングせんたくひ'],
+ ['식각 정지층','Etch stop layer','エッチングストッパ層','エッチングストッパそう','エッチングストップ層이라고도 쓴다.'],
+ ['하드 마스크','Hard mask','ハードマスク','ハードマスク'],
+ ['화학기상증착','Chemical vapor deposition (CVD)','化学気相成長','かがくきそうせいちょう','일본 특허는 CVD를 化学気相成長法으로 적는다.'],
+ ['물리기상증착','Physical vapor deposition (PVD)','物理気相成長','ぶつりきそうせいちょう','스퍼터링은 スパッタリング.'],
+ ['원자층 증착','Atomic layer deposition (ALD)','原子層堆積','げんしそうたいせき'],
+ ['에피택셜 성장','Epitaxial growth','エピタキシャル成長','エピタキシャルせいちょう'],
+ ['이온 주입','Ion implantation','イオン注入','イオンちゅうにゅう'],
+ ['도핑','Doping','ドーピング','ドーピング'],
+ ['열처리','Heat treatment (annealing)','熱処理','ねつしょり','어닐링은 アニール.'],
+ ['산화','Oxidation','酸化','さんか','열산화는 熱酸化. 심판의 “참가(参加)”와 읽는 법이 같다.'],
+ ['세정','Cleaning','洗浄','せんじょう'],
+ ['화학적 기계적 연마','Chemical mechanical polishing (CMP)','化学機械研磨','かがくきかいけんま'],
+ ['다마신','Damascene process','ダマシン','ダマシン','구리 배선은 듀얼 다마신(デュアルダマシン)으로 만든다.'],
+ ['패터닝','Patterning','パターニング','パターニング'],
+ ['트렌치','Trench','トレンチ','トレンチ'],
+ ['리세스','Recess','リセス','リセス','“오목부”는 凹部(おうぶ).'],
+ ['개구부','Opening','開口部','かいこうぶ'],
+ ['희생층','Sacrificial layer','犠牲層','ぎせいそう'],
+ ['종횡비','Aspect ratio','アスペクト比','アスペクトひ'],
+ ['챔버','Chamber','チャンバ','チャンバ','장비 특허에선 処理容器(しょりようき)라고도 쓴다.'],
+ ['플라즈마','Plasma','プラズマ','プラズマ'],
+ ['정전 척','Electrostatic chuck','静電チャック','せいでんチャック'],
+ ['샤워헤드','Showerhead','シャワーヘッド','シャワーヘッド'],
+ ['수율','Yield','歩留まり','ぶどまり','공정 특허의 효과로 자주 내세운다. 화학 반응의 수율은 収率.'],
+ ['다이싱','Dicing','ダイシング','ダイシング'],
+ ['웨이퍼 본딩','Wafer bonding','ウエハ接合','ウエハせつごう','하이브리드 본딩은 ハイブリッド接合.'],
+]},
+{ja:'電子回路', ko:'회로·전자', en:'Circuits', mark:'C', c:'#1F3A4D', foil:'silver',
+ desc:'The parts and signals of electronic circuits, as they are written in claims.', t:[
+ ['회로','Circuit','回路','かいろ'],
+ ['저항','Resistor','抵抗','ていこう','소자는 抵抗素子, 값은 抵抗値.'],
+ ['인덕터','Inductor','インダクタ','インダクタ'],
+ ['다이오드','Diode','ダイオード','ダイオード'],
+ ['증폭기','Amplifier','増幅器','ぞうふくき'],
+ ['비교기','Comparator','比較器','ひかくき','コンパレータ라고도 쓴다.'],
+ ['발진기','Oscillator','発振器','はっしんき'],
+ ['스위칭 소자','Switching element','スイッチング素子','スイッチングそし'],
+ ['전원','Power supply','電源','でんげん'],
+ ['전압','Voltage','電圧','でんあつ'],
+ ['전류','Current','電流','でんりゅう'],
+ ['전원 전압','Power supply voltage','電源電圧','でんげんでんあつ'],
+ ['기준 전압','Reference voltage','基準電圧','きじゅんでんあつ'],
+ ['접지','Ground','接地','せっち','グランド(GND)라고도 쓴다.'],
+ ['노드','Node','ノード','ノード'],
+ ['단자','Terminal','端子','たんし','통신의 “단말”은 端末. 한 글자 차이.'],
+ ['직렬','Series','直列','ちょくれつ'],
+ ['병렬','Parallel','並列','へいれつ'],
+ ['임피던스','Impedance','インピーダンス','インピーダンス'],
+ ['논리 회로','Logic circuit','論理回路','ろんりかいろ'],
+ ['플립플롭','Flip-flop','フリップフロップ','フリップフロップ'],
+ ['클록 신호','Clock signal','クロック信号','クロックしんごう'],
+ ['제어 신호','Control signal','制御信号','せいぎょしんごう'],
+ ['아날로그-디지털 변환기','Analog-to-digital converter (ADC)','アナログデジタル変換器','アナログデジタルへんかんき','일본 특허는 A/D変換器로도 쓴다.'],
+ ['인버터','Inverter','インバータ','インバータ','논리 반전 회로와 전력 변환 장치를 모두 가리키니 문맥을 본다.'],
+ ['컨버터','Converter','コンバータ','コンバータ'],
+ ['레귤레이터','Voltage regulator','レギュレータ','レギュレータ'],
+ ['구동 회로','Drive circuit','駆動回路','くどうかいろ'],
+ ['인쇄회로기판','Printed circuit board (PCB)','プリント配線板','プリントはいせんばん','부품을 실장한 상태는 プリント回路板.'],
+ ['실장','Mounting','実装','じっそう','부품을 기판에 올려 접속하는 것.'],
+ ['안테나','Antenna','アンテナ','アンテナ'],
+ ['센서','Sensor','センサ','センサ','특허 문서는 장음 없이 センサ로 쓴다.'],
+]},
+{ja:'ディスプレイ', ko:'디스플레이', en:'Displays', mark:'D', c:'#3A2F4F', foil:'silver',
+ desc:'Pixels, OLED stacks and drivers. Note what Japanese calls an OLED.', t:[
+ ['표시 장치','Display device','表示装置','ひょうじそうち'],
+ ['표시 패널','Display panel','表示パネル','ひょうじパネル'],
+ ['화소','Pixel','画素','がそ'],
+ ['부화소','Sub-pixel','副画素','ふくがそ','サブピクセル이라고도 쓴다.'],
+ ['유기 발광 소자','Organic light-emitting diode (OLED)','有機EL素子','ゆうきイーエルそし','일본은 OLED를 有機EL(유기 일렉트로루미네선스)이라고 부른다.'],
+ ['발광층','Light-emitting layer','発光層','はっこうそう'],
+ ['박막 트랜지스터','Thin-film transistor (TFT)','薄膜トランジスタ','はくまくトランジスタ'],
+ ['액정','Liquid crystal','液晶','えきしょう'],
+ ['편광판','Polarizer','偏光板','へんこうばん'],
+ ['컬러 필터','Color filter','カラーフィルタ','カラーフィルタ'],
+ ['백라이트','Backlight','バックライト','バックライト'],
+ ['양자점','Quantum dot','量子ドット','りょうしドット'],
+ ['봉지층','Encapsulation layer','封止層','ふうしそう','OLED는 수분에 약해 薄膜封止를 쓴다.'],
+ ['화소 정의막','Pixel-defining layer (bank)','バンク','バンク','일본 특허는 隔壁(かくへき)이라고도 쓴다.'],
+ ['양극','Anode','陽極','ようきょく','디스플레이·다이오드의 양극은 陽極, 전지의 양극은 正極. 한국어는 둘 다 “양극”이다.'],
+ ['음극','Cathode','陰極','いんきょく','전지의 음극은 負極(ふきょく).'],
+ ['주사선','Scan line','走査線','そうさせん'],
+ ['데이터선','Data line','データ線','データせん','신호선(信号線)이라고도 쓴다.'],
+ ['게이트 구동부','Gate driver','ゲートドライバ','ゲートドライバ','走査線駆動回路라고도 쓴다.'],
+ ['터치 센서','Touch sensor','タッチセンサ','タッチセンサ'],
+ ['휘도','Luminance','輝度','きど'],
+ ['시야각','Viewing angle','視野角','しやかく'],
+ ['폴더블','Foldable','折り畳み可能','おりたたみかのう','“접히는 표시 장치”는 折り畳み可能な表示装置.'],
+]},
+{ja:'電池', ko:'이차전지', en:'Batteries', mark:'B', c:'#2F4A3A', foil:'silver',
+ desc:'Electrodes, electrolytes and packs. Korean 양극 has two Japanese translations.', t:[
+ ['이차전지','Secondary battery','二次電池','にじでんち'],
+ ['리튬이온 전지','Lithium-ion battery','リチウムイオン電池','リチウムイオンでんち'],
+ ['양극 활물질','Positive electrode active material','正極活物質','せいきょくかつぶっしつ','전지의 양극은 正極. 陽極이라고 쓰지 않는다.'],
+ ['음극 활물질','Negative electrode active material','負極活物質','ふきょくかつぶっしつ'],
+ ['집전체','Current collector','集電体','しゅうでんたい'],
+ ['전해질','Electrolyte','電解質','でんかいしつ','액체 전해질은 電解液.'],
+ ['분리막','Separator','セパレータ','セパレータ'],
+ ['바인더','Binder','バインダ','バインダ','結着剤(けっちゃくざい)라고도 쓴다.'],
+ ['도전재','Conductive agent','導電助剤','どうでんじょざい'],
+ ['전극 조립체','Electrode assembly','電極組立体','でんきょくくみたてたい'],
+ ['전고체 전지','All-solid-state battery','全固体電池','ぜんこたいでんち'],
+ ['고체 전해질','Solid electrolyte','固体電解質','こたいでんかいしつ'],
+ ['전지 셀','Battery cell','電池セル','でんちセル'],
+ ['배터리 모듈','Battery module','電池モジュール','でんちモジュール'],
+ ['배터리 팩','Battery pack','電池パック','でんちパック'],
+ ['파우치형','Pouch type','パウチ型','パウチがた','원통형은 円筒形, 각형은 角形.'],
+ ['충방전','Charge and discharge','充放電','じゅうほうでん'],
+ ['용량','Capacity','容量','ようりょう'],
+ ['사이클 특성','Cycle life','サイクル特性','サイクルとくせい'],
+ ['배터리 관리 시스템','Battery management system (BMS)','電池管理システム','でんちかんりシステム'],
+ ['코팅층','Coating layer','被覆層','ひふくそう','コーティング層이라고도 쓴다.'],
+ ['입경','Particle size','粒径','りゅうけい','평균 입경 D50은 メジアン径.'],
+]},
+{ja:'ソフトウェア・通信', ko:'소프트웨어·통신', en:'Software', mark:'S', c:'#2B2F4F', foil:'silver',
+ desc:'Computers, networks and AI, plus the eligibility words a software claim needs.', t:[
+ ['정보 처리 장치','Information processing apparatus','情報処理装置','じょうほうしょりそうち','일본 소프트웨어 청구항의 단골 주어.'],
+ ['프로세서','Processor','プロセッサ','プロセッサ'],
+ ['메모리','Memory','メモリ','メモリ'],
+ ['기록 매체','Recording medium','記録媒体','きろくばいたい','“컴퓨터 판독 가능한 기록 매체”는 コンピュータ読み取り可能な記録媒体.'],
+ ['프로그램','Program','プログラム','プログラム','일본은 프로그램 자체를 물건으로 보고 청구할 수 있다.','特許法 2条3項1号·4項'],
+ ['컴퓨터로 구현되는 방법','Computer-implemented method','コンピュータ実装方法','コンピュータじっそうほうほう'],
+ ['하드웨어 자원','Hardware resources','ハードウェア資源','ハードウェアしげん','일본 기준: 소프트웨어 정보처리가 하드웨어 자원으로 구체적으로 실현되어야 발명이 된다.'],
+ ['영업방법 발명','Business method invention','ビジネス関連発明','ビジネスかんれんはつめい','한국은 BM 발명이라고 부른다.'],
+ ['사용자 인터페이스','User interface','ユーザインタフェース','ユーザインタフェース','특허 문서는 インタフェース 표기가 흔하다.'],
+ ['서버','Server','サーバ','サーバ'],
+ ['단말','Terminal (user equipment)','端末','たんまつ','통신 표준의 UE는 端末装置·ユーザ装置.'],
+ ['기지국','Base station','基地局','きちきょく'],
+ ['네트워크','Network','ネットワーク','ネットワーク'],
+ ['통신부','Communication unit','通信部','つうしんぶ'],
+ ['송신','Transmission','送信','そうしん'],
+ ['수신','Reception','受信','じゅしん'],
+ ['신호','Signal','信号','しんごう'],
+ ['인공지능','Artificial intelligence (AI)','人工知能','じんこうちのう'],
+ ['기계학습','Machine learning','機械学習','きかいがくしゅう'],
+ ['신경망','Neural network','ニューラルネットワーク','ニューラルネットワーク'],
+ ['학습 데이터','Training data','学習データ','がくしゅうデータ','정답이 붙은 데이터는 教師データ.'],
+ ['학습된 모델','Trained model','学習済みモデル','がくしゅうずみモデル','일본 심사 사례는 学習済みモデル을 프로그램으로 청구하는 형식을 인정한다.'],
+ ['표준특허','Standard-essential patent (SEP)','標準必須特許','ひょうじゅんひっすとっきょ','표준을 따르면 피할 수 없는 특허. FRAND 조건으로 실시허락한다.'],
+ ['블록체인','Blockchain','ブロックチェーン','ブロックチェーン'],
+ ['클라우드','Cloud','クラウド','クラウド'],
+]},
+{ja:'化学・バイオ', ko:'화학·바이오', en:'Chemistry', mark:'C', c:'#C9C3B2', foil:'ink',
+ desc:'Compounds, compositions and biologics, including the yield that is not the fab yield.', t:[
+ ['화합물','Compound','化合物','かごうぶつ'],
+ ['조성물','Composition','組成物','そせいぶつ'],
+ ['혼합물','Mixture','混合物','こんごうぶつ'],
+ ['유효성분','Active ingredient','有効成分','ゆうこうせいぶん'],
+ ['유효량','Effective amount','有効量','ゆうこうりょう'],
+ ['함량','Content','含有量','がんゆうりょう'],
+ ['중량%','Percent by weight (wt%)','質量%','しつりょうパーセント','일본 특허는 重量%보다 質量%를 쓰는 추세.'],
+ ['약학적 조성물','Pharmaceutical composition','医薬組成物','いやくそせいぶつ'],
+ ['약학적으로 허용 가능한 염','Pharmaceutically acceptable salt','薬学的に許容される塩','やくがくてきにきょようされるえん'],
+ ['치환기','Substituent','置換基','ちかんき'],
+ ['알킬기','Alkyl group','アルキル基','アルキルき','“치환 또는 비치환된”은 置換又は無置換の.'],
+ ['전구체','Precursor','前駆体','ぜんくたい'],
+ ['수용액','Aqueous solution','水溶液','すいようえき'],
+ ['용매','Solvent','溶媒','ようばい'],
+ ['촉매','Catalyst','触媒','しょくばい'],
+ ['중합체','Polymer','重合体','じゅうごうたい','ポリマー라고도 쓴다.'],
+ ['단량체','Monomer','単量体','たんりょうたい'],
+ ['결정형','Crystalline form','結晶形','けっしょうけい','결정 다형은 結晶多形.'],
+ ['수율(화학)','Yield (chemical)','収率','しゅうりつ','화학 반응의 수율은 収率, 반도체 공정의 수율은 歩留まり.'],
+ ['물성','Physical properties','物性','ぶっせい'],
+ ['실험예','Test example','試験例','しけんれい'],
+ ['투여','Administration','投与','とうよ'],
+ ['용법·용량','Dosage and administration','用法・用量','ようほう・ようりょう','한국 대법원은 2015년 투여 용법·용량도 발명의 구성요소가 될 수 있다고 봤다.'],
+ ['의약용도 발명','Medical use invention','医薬用途発明','いやくようとはつめい'],
+ ['항체','Antibody','抗体','こうたい'],
+ ['단백질','Protein','タンパク質','タンパクしつ'],
+ ['아미노산 서열','Amino acid sequence','アミノ酸配列','アミノさんはいれつ'],
+ ['염기서열','Nucleotide sequence','塩基配列','えんきはいれつ'],
+ ['미생물 기탁','Deposit of microorganisms','微生物の寄託','びせいぶつのきたく','쉽게 구할 수 없는 미생물은 출원 전에 기탁하고 수탁번호를 적는다.'],
 ]},
 ];
 
@@ -654,12 +999,23 @@ VOLS.forEach((v, vi) => {
   });
 });
 console.assert(ALL.every(it => it.ko && it.en && it.ja && it.kana), 'term is missing a language or reading');
-const COMP = { no: 'I–' + VOLS.at(-1).no, ja: '総覧', ko: '총람', en: 'Compendium', mark: 'C', c: '#17181C', foil: 'gold', desc: 'Every volume shuffled together, for a last pass before the exam.', items: ALL };
+const COMP = { no: '', ja: '総覧', ko: '총람', en: 'Compendium', mark: 'C', c: '#17181C', foil: 'gold', desc: 'Every volume shuffled together, for a last pass before the exam.', items: ALL };
 // The last book (after the volumes) collects every card marked Again; most-missed first
-const NOTE = { no: 'XIII', ja: '誤答ノート', ko: '오답노트', en: 'Mistakes', mark: 'X', c: '#8F2C22', foil: 'gold', note: true,
+const NOTE = { no: '', ja: '誤答ノート', ko: '오답노트', en: 'Mistakes', mark: 'X', c: '#8F2C22', foil: 'gold', note: true,
   desc: 'Every card you mark Again is filed here with how often and when you missed it. Get it right to clear it.',
   get items() { return ALL.filter(it => wrong[it.id]).sort((a, b) => wrong[b.id].n - wrong[a.id].n || wrong[b.id].t - wrong[a.id].t); } };
-const SHELF = [...VOLS, NOTE];
+// VOLS order fixes card ids (vi-i) and saved progress, so it is append-only.
+// Shelf rows, order and volume numerals come from ROWS instead.
+const ROWS = [
+  ['Law & practice', [0, 1, 2, 3, 10, 4, 11, 5, 6, 7, 9]],
+  ['Technical fields', [8, 12, 13, 14, 15, 16, 17]],
+].map(([label, ix]) => ({ label, vols: ix.map(i => VOLS[i]) }));
+ROWS.at(-1).vols.push(NOTE);
+const SHELF = ROWS.flatMap(r => r.vols);
+console.assert(SHELF.length === VOLS.length + 1 && new Set(SHELF).size === SHELF.length, 'every volume sits on the shelf once');
+const roman = n => [[10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']].reduce((s, [v, r]) => { while (n >= v) { s += r; n -= v; } return s; }, '');
+SHELF.forEach((v, i) => { v.no = roman(i + 1); });
+COMP.no = 'I–' + roman(VOLS.length);
 
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
@@ -681,30 +1037,30 @@ const NB_COVER = `<div class="nb-label"><span class="nb-no">${NOTE.no}</span><sp
 const coverHTML = v => v.note ? NB_COVER : `<div class="cv"><span class="cv-no foil">${v.no}</span><div class="cv-mid"><span class="cv-seal"><span class="foil">${v.mark}</span></span><span class="cv-title foil">${v.en}</span><span class="cv-sub">EN · KO · JA</span></div><span class="cv-foot">PATENT LEXICON</span></div>`;
 
 /* ── shelf ─────────────────────────────────────── */
-const shelf = $('#shelf');
-shelf.innerHTML = SHELF.map((v, i) => `<button type="button" class="slot${v.note ? ' nb' : ''}" style="--i:${i};${vars(v)}" data-v="${i}" aria-label="Open Vol. ${v.no}: ${v.en}">
+const stage = $('#shelfStage');
+const slotHTML = (v, ri) => { const i = SHELF.indexOf(v); return `<button type="button" class="slot${v.note ? ' nb' : ''}" style="--i:${ri};${vars(v)}" data-v="${i}" aria-label="Open Vol. ${v.no}: ${v.en}">
   <div class="book">
     <div class="face cover cloth">${coverHTML(v)}</div>
     <div class="face back cloth"></div>
     <div class="face spine cloth"><div class="sp"><span class="sp-band"></span><span class="sp-no foil">${v.no}</span><span class="sp-title foil">${v.en}</span><span class="sp-fill"></span><span class="sp-count foil" data-count="${i}"></span><span class="sp-band"></span></div></div>
     <div class="face edge"></div>
     <div class="face topf"></div>
-  </div></button>`).join('');
-shelf.style.setProperty('--mid', (SHELF.length - 1) / 2);
-shelf.style.setProperty('--n', SHELF.length);
+  </div></button>`; };
+stage.innerHTML = ROWS.map(r => `<div class="shelf-row"><p class="shelf-label">${r.label}</p><div class="shelf-scroll"><div class="shelf" style="--mid:${(r.vols.length - 1) / 2}">${r.vols.map(slotHTML).join('')}</div></div></div>`).join('');
+stage.style.setProperty('--n', Math.max(...ROWS.map(r => r.vols.length)));
+const slotOf = v => stage.querySelector(`.slot[data-v="${SHELF.indexOf(v)}"]`);
 
-const stage = $('#shelfStage');
 stage.addEventListener('pointermove', e => {
   if (e.pointerType !== 'mouse') return;
   const r = stage.getBoundingClientRect();
-  shelf.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 2 - 1).toFixed(3));
-  shelf.style.setProperty('--my', ((e.clientY - r.top) / r.height * 2 - 1).toFixed(3));
+  stage.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 2 - 1).toFixed(3));
+  stage.style.setProperty('--my', ((e.clientY - r.top) / r.height * 2 - 1).toFixed(3));
 });
-stage.addEventListener('pointerleave', () => { shelf.style.setProperty('--mx', 0); shelf.style.setProperty('--my', 0); });
-shelf.addEventListener('click', e => { const s = e.target.closest('.slot'); if (s) openStudy(SHELF[s.dataset.v], s); });
+stage.addEventListener('pointerleave', () => { stage.style.setProperty('--mx', 0); stage.style.setProperty('--my', 0); });
+stage.addEventListener('click', e => { const s = e.target.closest('.slot'); if (s) openStudy(SHELF[s.dataset.v], s); });
 const hover = e => { const s = e.target.closest('.slot'); if (s) showPlaque(SHELF[s.dataset.v]); };
-shelf.addEventListener('pointerover', hover);
-shelf.addEventListener('focusin', hover);
+stage.addEventListener('pointerover', hover);
+stage.addEventListener('focusin', hover);
 
 /* ── plaque & counts ──────────────────────────── */
 const plaque = $('#plaque');
@@ -724,11 +1080,10 @@ function showPlaque(v, force) {
 }
 plaque.addEventListener('click', e => {
   if (!e.target.closest('[data-open]')) return;
-  const i = SHELF.indexOf(plaqueV);
-  openStudy(plaqueV, shelf.children[i]);
+  openStudy(plaqueV, slotOf(plaqueV));
 });
 function updateCounts() {
-  SHELF.forEach((v, i) => { shelf.querySelector(`[data-count="${i}"]`).textContent = v.note ? activeWrong().length : `${countKnown(v.items)}/${v.items.length}`; });
+  SHELF.forEach((v, i) => { stage.querySelector(`[data-count="${i}"]`).textContent = v.note ? activeWrong().length : `${countKnown(v.items)}/${v.items.length}`; });
   $('#knownAll').textContent = countKnown(ALL);
   $('#wrongAll').textContent = activeWrong().length;
   if (plaqueV) showPlaque(plaqueV, true);
